@@ -1,12 +1,36 @@
 package pers.minho.test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.naming.java.javaURLContextFactory;
+
+import pers.minho.dao.GoodsDao;
 import pers.minho.dao.UserDao;
+import pers.minho.entity.Goods;
 import pers.minho.entity.User;
 import pers.minho.util.MD5Util;
 
 public class DaoTest {
 	
-	// 添加用户测试
+	// 商品操作测试
+	public static void GoodsDaoTest() {
+		GoodsDao dao = new GoodsDao();
+		Goods goods = new Goods();
+		goods.setType_id(1);
+		goods.setName("机油桶");
+		goods.setAmount(1);
+		goods.setPrice(99.8);
+		goods.setStatus(1);
+		goods.setDesc("刀哥用过的机油桶");
+		goods.setSeller_id(5);
+		Date date = new Date();
+		goods.setCreate_date(new java.sql.Date(date.getTime()));
+		boolean flag = dao.addGoods(goods);
+		System.out.println(flag);
+	}
+	
+	// 用户操作测试
 	public static void UserDaoTest() {
 		UserDao dao = new UserDao();
 		
@@ -53,6 +77,7 @@ public class DaoTest {
 	}
 	
 	public static void main(String[] args) {
-		UserDaoTest();
+		GoodsDaoTest();
+		//UserDaoTest();
 	}
 }

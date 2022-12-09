@@ -27,7 +27,7 @@ public class UserDao {
 	// 添加用户
 	public boolean addUser(User user) {
 		boolean flag = false;
-		String sql = "INSERT INTO user(email, pwd, nickname, phone, img) VALUES(?, ?, ?, ?, ?)";	
+		String sql = "INSERT INTO `user`(email, pwd, nickname, phone, img) VALUES(?, ?, ?, ?, ?)";	
 		
 		try {
 			this.prep = this.conn.prepareStatement(sql);
