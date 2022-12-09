@@ -35,7 +35,8 @@ public class UserDao {
 			prep.setString(2, user.getPwd());
 			prep.setString(3, user.getNickname());
 			prep.setString(4, user.getPhone());
-			prep.setString(5, user.getImg());
+			// prep.setString(5, user.getImg());
+			prep.setString(5, "/views/static/user_img/default.png");
 			if (prep.executeUpdate() > 0) {
 				flag = true;
 			}

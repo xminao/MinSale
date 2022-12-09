@@ -1,9 +1,8 @@
 package pers.minho.test;
 
-import java.util.List;
-
 import pers.minho.dao.UserDao;
 import pers.minho.entity.User;
+import pers.minho.util.MD5Util;
 
 public class DaoTest {
 	
