@@ -68,7 +68,8 @@
 									</button>
 								</div>
 								<div class="mt-4 text-center">
-									还没有敏拍账号? <a href="register.jsp">立即注册</a>
+									还没有敏拍账号? 
+									<a href="register.jsp">立即注册</a>
 								</div>
 							</form>
 						</div>
