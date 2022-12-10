@@ -1,6 +1,7 @@
 package pers.minho.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -18,23 +19,24 @@ import pers.minho.service.UserService;
 
 @WebFilter("/AutoLogin")
 public class AutoLoginFilter extends HttpFilter implements Filter {
-       
+
 	private static final long serialVersionUID = 1L;
 
 	public AutoLoginFilter() {
         super();
     }
-    
+
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession ses = req.getSession();
-		
+
 //		if(LoginVerify.isLogin(req)){
 //			chain.doFilter(request, response);
 //			return;
 //		}
-		
-		
+
+
 		Cookie[] cookies = req.getCookies();
 		UserService service = new UserService();
 		String emailCookie = null;
@@ -60,6 +62,7 @@ public class AutoLoginFilter extends HttpFilter implements Filter {
 		chain.doFilter(request, response);
 	}
 
+	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
 

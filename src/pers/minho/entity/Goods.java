@@ -14,7 +14,7 @@ public class Goods {
 	private Integer seller_id;
 	private Integer status;
 	private Date create_date;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -75,24 +75,22 @@ public class Goods {
 	public void setCreate_date(Date create_date) {
 		this.create_date = create_date;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		Goods other = (Goods) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Goods [id=" + id + ", img=" + img + ", type_id=" + type_id + ", name=" + name + ", amount=" + amount

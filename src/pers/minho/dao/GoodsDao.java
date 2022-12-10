@@ -16,7 +16,7 @@ public class GoodsDao {
 	private Connection conn = null;
 	// 执行语句
 	private PreparedStatement prep = null;
-	
+
 	public GoodsDao() {
 		try {
 			this.conn = DBUtil.getConnection();
@@ -24,12 +24,12 @@ public class GoodsDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 添加用户
 	public boolean addGoods(Goods goods) {
 		boolean flag = false;
 		String sql = "INSERT INTO `goods`(img, type_id, `name`, `amount`, price, `status`, `desc`, seller_id, create_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			prep.setString(1, "/views/static/goods_img/default.png");
@@ -41,7 +41,7 @@ public class GoodsDao {
 			prep.setString(7, goods.getDesc());
 			prep.setInt(8, goods.getSeller_id());
 			prep.setDate(9, (Date)goods.getCreate_date());
-			
+
 			if (prep.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -49,15 +49,15 @@ public class GoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return flag;
 	}
-	
+
 	// 更新商品
 	public boolean updateGoods(Goods goods) {
 		boolean flag = false;
-		String sql = "UPDATE goods SET img=?, type_id=?, `name`=?, `amount`=?, price=?, `status`=?, `desc`=?, seller_id=?, create_date=? WHERE id=?";	
-		
+		String sql = "UPDATE goods SET img=?, type_id=?, `name`=?, `amount`=?, price=?, `status`=?, `desc`=?, seller_id=?, create_date=? WHERE id=?";
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			prep.setString(1, goods.getImg());
@@ -70,7 +70,7 @@ public class GoodsDao {
 			prep.setInt(8, goods.getSeller_id());
 			prep.setDate(9, (Date)goods.getCreate_date());
 			prep.setInt(10, goods.getId());
-			
+
 			if (prep.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -78,15 +78,15 @@ public class GoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return flag;
 	}
-	
+
 	// 根据ID查找商品
 	public Goods findById(int id) {
 		Goods goods = null;
 		String sql = "SELECT id, img, type_id, `name`, `amount`, price, `status`, `desc`, seller_id, create_date FROM goods WHERE id=?";
-		
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			this.prep.setInt(1, id);
@@ -111,12 +111,12 @@ public class GoodsDao {
 		}
 		return goods;
 	}
-	
+
 	// 查找所有商品
 	public List<Goods> findAll() {
-		List<Goods> all = new ArrayList<Goods>();
+		List<Goods> all = new ArrayList<>();
 		String sql = "SELECT id, img, type_id, `name`, `amount`, price, `status`, `desc`, seller_id, create_date FROM goods";
-		
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			ResultSet rSet = this.prep.executeQuery();

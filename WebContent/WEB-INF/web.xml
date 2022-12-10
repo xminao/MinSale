@@ -3,11 +3,7 @@
   <display-name>敏拍二手交易平台</display-name>
   
   <welcome-file-list>
-<<<<<<< HEAD
     <welcome-file>login.jsp</welcome-file>
-=======
-    <welcome-file>views/user/mylogin.jsp</welcome-file>
->>>>>>> b7eaf35d7daf6418837334ef1c0377a19512fec6
   </welcome-file-list>
   
   <filter>
@@ -20,24 +16,24 @@
   </filter-mapping>
   
   <filter>
-<<<<<<< HEAD
     <filter-name>LoginFilter</filter-name>
     <filter-class>pers.minho.filter.AutoLoginFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
-=======
-    <filter-name>login</filter-name>
-    <filter-class>pers.minho.filter.AutoLoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>login</filter-name>
->>>>>>> b7eaf35d7daf6418837334ef1c0377a19512fec6
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   
   <servlet>
-<<<<<<< HEAD
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>pers.minho.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>pers.minho.servlet.RegisterServlet</servlet-class>
   </servlet>
@@ -45,14 +41,4 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
-  
-=======
-    <servlet-name>register</servlet-name>
-    <servlet-class>pers.minho.servlet.RegisterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>register</servlet-name>
-    <url-pattern>/user/register</url-pattern>
-  </servlet-mapping>
->>>>>>> b7eaf35d7daf6418837334ef1c0377a19512fec6
 </web-app>

@@ -9,7 +9,7 @@ public class User {
 	private String nickname;
 	private String phone;
 	private String img;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -46,25 +46,23 @@ public class User {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", pwd=" + pwd + ", nickname=" + nickname + ", phone=" + phone
 				+ ", img=" + img + "]";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		User other = (User) obj;
 		return Objects.equals(id, other.id);

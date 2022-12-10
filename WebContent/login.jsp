@@ -34,7 +34,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">登录</h4>
-							<form method="POST" class="my-login-validation" action="LoginServlet">
+							<form method="POST" class="my-login-validation" action="login">
 								<div class="form-group">
 									<label for="email">邮箱</label>
 									<input id="email" type="email" class="form-control" name="inputEmail" value="" required autofocus>

@@ -15,7 +15,7 @@ public class UserDao {
 	private Connection conn = null;
 	// 执行语句
 	private PreparedStatement prep = null;
-	
+
 	public UserDao() {
 		try {
 			this.conn = DBUtil.getConnection();
@@ -23,12 +23,12 @@ public class UserDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 添加用户
 	public boolean addUser(User user) {
 		boolean flag = false;
-		String sql = "INSERT INTO `user`(email, pwd, nickname, phone, img) VALUES(?, ?, ?, ?, ?)";	
-		
+		String sql = "INSERT INTO `user`(email, pwd, nickname, phone, img) VALUES(?, ?, ?, ?, ?)";
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			prep.setString(1, user.getEmail());
@@ -44,15 +44,15 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return flag;
 	}
-	
+
 	// 更新用户
 	public boolean updateUser(User user) {
 		boolean flag = false;
-		String sql = "UPDATE user SET email=?, pwd=?, nickname=?, phone=?, img=? WHERE id=?";	
-		
+		String sql = "UPDATE user SET email=?, pwd=?, nickname=?, phone=?, img=? WHERE id=?";
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			prep.setString(1, user.getEmail());
@@ -68,15 +68,15 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return flag;
 	}
-	
+
 	// 根据ID查找用户
 	public User findById(int id) {
 		User user = null;
 		String sql = "SELECT id, email, pwd, nickname, phone, img FROM user WHERE id=?";
-		
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			this.prep.setInt(1, id);
@@ -97,12 +97,12 @@ public class UserDao {
 		}
 		return user;
 	}
-	
+
 	// 根据邮箱查找用户
 	public User findByEmail(String email) {
 		User user = null;
 		String sql = "SELECT id, email, pwd, nickname, phone, img FROM user WHERE email=?";
-		
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			this.prep.setString(1, email);
@@ -123,12 +123,38 @@ public class UserDao {
 		}
 		return user;
 	}
-	
+
+	// 根据昵称查找用户
+	public User findByNickname(String nickname) {
+		User user = null;
+		String sql = "SELECT id, email, pwd, nickname, phone, img FROM user WHERE nickname=?";
+
+		try {
+			this.prep = this.conn.prepareStatement(sql);
+			this.prep.setString(1, nickname);
+			ResultSet rSet = this.prep.executeQuery();
+			if (rSet.next()) {
+				user = new User();
+				user.setId(rSet.getInt(1));
+				user.setEmail(rSet.getString(2));
+				user.setPwd(rSet.getString(3));
+				user.setNickname(rSet.getString(4));
+				user.setPhone(rSet.getString(5));
+				user.setImg(rSet.getString(6));
+			}
+			rSet.close();
+			this.prep.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
 	// 查找所有用户
 	public List<User> findAll() {
-		List<User> all = new ArrayList<User>();
+		List<User> all = new ArrayList<>();
 		String sql = "SELECT * FROM user";
-		
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			ResultSet rSet = this.prep.executeQuery();
@@ -148,12 +174,12 @@ public class UserDao {
 		}
 		return all;
 	}
-	
+
 	// 通过邮件或名字关键字查找
 	public List<User> findAllbyKeyword(String keyword) {
-		List<User> all = new ArrayList<User>();
+		List<User> all = new ArrayList<>();
 		String sql = "SELECT * FROM user WHERE nickname LIKE ? OR email LIKE ?";
-		
+
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			this.prep.setString(1,  "%" + keyword + "%");
