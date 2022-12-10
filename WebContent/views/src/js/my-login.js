@@ -14,6 +14,10 @@
  * https://www.buymeacoffee.com/mhdnauvalazhar
  * 
  ******************************************/
+ 
+ window.setTimeout(function(){
+    $('[data-dismiss="alert"]').alert('close');
+},2000);
 
 'use strict';
 

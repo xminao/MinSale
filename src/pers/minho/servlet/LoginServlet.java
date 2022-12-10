@@ -26,18 +26,19 @@ public class LoginServlet extends HttpServlet {
 		String inputEmail = request.getParameter("inputEmail");
 		String inputPassword = request.getParameter("inputPassword");
 		String autoLogin = request.getParameter("autoLogin");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		UserService service = new UserService();
 		try {
 			if (service.findByEmail(inputEmail) != null) {
 				User user = service.findByEmail(inputEmail);
 				String pass = MD5Util.getMD5(MD5Util.getMD5(inputPassword));
-				System.out.println(user.toString());
+				
+				//System.out.println(user.toString());
+				
 				if (user.getPwd().equals(pass)) {
 					if (autoLogin != null && autoLogin.equals("on")) {
 						// 目前仅用email做cookie验证
-						Cookie cookie = new Cookie("LOGIN_EMAIL", inputEmail);
+						Cookie cookie = new Cookie("LOGIN_EMAIL_COOKIE", inputEmail);
 						// 七天有效期
 						cookie.setMaxAge(60 * 60 * 24 * 7);
 						response.addCookie(cookie);
@@ -49,11 +50,11 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect("index.jsp");
 				} else {
 					request.setAttribute("isLoginOk", "false");
-					request.getRequestDispatcher("user/login.jsp").forward(request, response);
+					request.getRequestDispatcher("/views/user/mylogin.jsp").forward(request, response);
 				}
 			} else {
 				request.setAttribute("isLoginOk", "false");
-				request.getRequestDispatcher("user/login.jsp").forward(request, response);
+				request.getRequestDispatcher("/views/user/mylogin.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
