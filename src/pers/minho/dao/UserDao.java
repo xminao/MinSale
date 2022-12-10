@@ -75,7 +75,7 @@ public class UserDao {
 	// 根据ID查找用户
 	public User findById(int id) {
 		User user = null;
-		String sql = "SELECT * FROM user WHERE id=?";
+		String sql = "SELECT id, email, pwd, nickname, phone, img FROM user WHERE id=?";
 		
 		try {
 			this.prep = this.conn.prepareStatement(sql);
@@ -83,11 +83,12 @@ public class UserDao {
 			ResultSet rSet = this.prep.executeQuery();
 			if (rSet.next()) {
 				user = new User();
-				user.setEmail(rSet.getString(1));
-				user.setPwd(rSet.getString(2));
-				user.setNickname(rSet.getString(3));
-				user.setPhone(rSet.getString(4));
-				user.setImg(rSet.getString(5));
+				user.setId(rSet.getInt(1));
+				user.setEmail(rSet.getString(2));
+				user.setPwd(rSet.getString(3));
+				user.setNickname(rSet.getString(4));
+				user.setPhone(rSet.getString(5));
+				user.setImg(rSet.getString(6));
 			}
 			rSet.close();
 			this.prep.close();
@@ -100,7 +101,7 @@ public class UserDao {
 	// 根据邮箱查找用户
 	public User findByEmail(String email) {
 		User user = null;
-		String sql = "SELECT * FROM user WHERE email=?";
+		String sql = "SELECT id, email, pwd, nickname, phone, img FROM user WHERE email=?";
 		
 		try {
 			this.prep = this.conn.prepareStatement(sql);
@@ -108,11 +109,12 @@ public class UserDao {
 			ResultSet rSet = this.prep.executeQuery();
 			if (rSet.next()) {
 				user = new User();
-				user.setEmail(rSet.getString(1));
-				user.setPwd(rSet.getString(2));
-				user.setNickname(rSet.getString(3));
-				user.setPhone(rSet.getString(4));
-				user.setImg(rSet.getString(5));
+				user.setId(rSet.getInt(1));
+				user.setEmail(rSet.getString(2));
+				user.setPwd(rSet.getString(3));
+				user.setNickname(rSet.getString(4));
+				user.setPhone(rSet.getString(5));
+				user.setImg(rSet.getString(6));
 			}
 			rSet.close();
 			this.prep.close();

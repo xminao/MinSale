@@ -2,6 +2,7 @@ package pers.minho.test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.naming.java.javaURLContextFactory;
 
@@ -16,18 +17,45 @@ public class DaoTest {
 	// 商品操作测试
 	public static void GoodsDaoTest() {
 		GoodsDao dao = new GoodsDao();
-		Goods goods = new Goods();
-		goods.setType_id(1);
-		goods.setName("机油桶");
-		goods.setAmount(1);
-		goods.setPrice(99.8);
-		goods.setStatus(1);
-		goods.setDesc("刀哥用过的机油桶");
-		goods.setSeller_id(5);
-		Date date = new Date();
-		goods.setCreate_date(new java.sql.Date(date.getTime()));
-		boolean flag = dao.addGoods(goods);
-		System.out.println(flag);
+// 增加商品测试
+//		Goods goods = new Goods();
+//		goods.setType_id(1);
+//		goods.setName("机油桶");
+//		goods.setAmount(1);
+//		goods.setPrice(99.8);
+//		goods.setStatus(1);
+//		goods.setDesc("刀哥用过的机油桶");
+//		goods.setSeller_id(5);
+//		Date date = new Date();
+//		goods.setCreate_date(new java.sql.Date(date.getTime()));
+//		boolean flag = dao.addGoods(goods);
+//		System.out.println(flag);
+		
+// 更新商品测试
+//		Goods goods = new Goods();
+//		goods.setId(1);
+//		goods.setImg("/static/good_img/jyt.png");
+//		goods.setType_id(1);
+//		goods.setName("机油桶");
+//		goods.setAmount(1);
+//		goods.setPrice(99.9);
+//		goods.setStatus(1);
+//		goods.setDesc("刀哥用过的机油桶");
+//		goods.setSeller_id(5);
+//		Date date = new Date();
+//		goods.setCreate_date(new java.sql.Date(date.getTime()));
+//		boolean flag = dao.updateGoods(goods);
+//		System.out.println(flag);
+		
+// 根据ID查找商品测试
+//		Goods goods = dao.findById(1);
+//		System.out.println(goods.toString());
+		
+// 查找所有商品测试
+		List<Goods> goods = dao.findAll();
+		for (Goods good : goods) {
+			System.out.println(good.toString());
+		}
 	}
 	
 	// 用户操作测试

@@ -3,7 +3,7 @@
   <display-name>敏拍二手交易平台</display-name>
   
   <welcome-file-list>
-    <welcome-file>views/user/register.jsp</welcome-file>
+    <welcome-file>views/user/mylogin.jsp</welcome-file>
   </welcome-file-list>
   
   <filter>

@@ -14,7 +14,7 @@ import pers.minho.service.UserService;
 import pers.minho.util.MD5Util;
 
 
-@WebServlet("/UserServlet")
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
 			if (service.findByEmail(inputEmail) != null) {
 				User user = service.findByEmail(inputEmail);
 				String pass = MD5Util.getMD5(MD5Util.getMD5(inputPassword));
+				System.out.println(user.toString());
 				if (user.getPwd().equals(pass)) {
 					if (autoLogin != null && autoLogin.equals("on")) {
 						// 目前仅用email做cookie验证
