@@ -8,8 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import pers.minho.entity.Goods;
 import pers.minho.util.DBUtil;
+import pers.minho.util.UserUtil;
 
 public class GoodsDao {
 	// 数据库连接
@@ -29,7 +32,7 @@ public class GoodsDao {
 	public boolean addGoods(Goods goods) {
 		boolean flag = false;
 		String sql = "INSERT INTO `goods`(img, type_id, `name`, `amount`, price, `status`, `desc`, seller_id, create_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+		
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			prep.setString(1, "/views/static/goods_img/default.png");
@@ -40,7 +43,9 @@ public class GoodsDao {
 			prep.setInt(6, goods.getStatus());
 			prep.setString(7, goods.getDesc());
 			prep.setInt(8, goods.getSeller_id());
-			prep.setDate(9, (Date)goods.getCreate_date());
+			java.util.Date date = new java.util.Date();
+			prep.setDate(9, new java.sql.Date(date.getTime()));
+			//prep.setDate(9, (Date)goods.getCreate_date());
 
 			if (prep.executeUpdate() > 0) {
 				flag = true;

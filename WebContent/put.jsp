@@ -19,7 +19,7 @@
 	<jsp:include page="header.jsp" />
 
     <div class="container my-2">
-        <form method="POST" action="">
+        <form method="POST" action="put">
             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                   <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">物品信息</a>
@@ -56,7 +56,7 @@
                             
                             <div class="form-group">
                                 <label for="inputDesc">物品描述</label>
-                                <textarea class="form-control" id="inputDesc" rows="3" required></textarea>
+                                <textarea class="form-control" id="inputDesc" rows="3" name="inputDesc" required></textarea>
                             </div>
         
                             <div class="form-group">
