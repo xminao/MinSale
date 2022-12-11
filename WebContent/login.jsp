@@ -8,12 +8,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="author" content="Kodinger">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>登录 - 敏拍二手交易平台</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<%=basePath%>src/css/my-login.css">
+	<!-- 公共头 -->
+	<jsp:include page="head.jsp" />
 </head>
 
 <body class="my-login-page">
