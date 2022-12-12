@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pers.minho.entity.User;
 import pers.minho.service.UserService;
-import pers.minho.util.MD5Util;
+import pers.minho.util.EncryptUtil;
 
 //@WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -41,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
 						if (pwd.matches("[A-Za-z0-9_]{6,}")) {
 							if (pwd_confirm.equals(pwd)) {
 								// 两次MD5加密保存密码
-								pwd = MD5Util.getMD5(MD5Util.getMD5(pwd));
+								pwd = EncryptUtil.MD5(EncryptUtil.MD5(pwd));
 								user.setEmail(email);
 								user.setPwd(pwd);
 								user.setNickname(nickname);

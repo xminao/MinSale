@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import pers.minho.entity.User;
 import pers.minho.service.UserService;
+import pers.minho.util.EncryptUtil;
+import pers.minho.util.UserUtil;
 
 @WebFilter("/AutoLogin")
 public class AutoLoginFilter extends HttpFilter implements Filter {
@@ -31,25 +33,25 @@ public class AutoLoginFilter extends HttpFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession ses = req.getSession();
 
-//		if(LoginVerify.isLogin(req)){
-//			chain.doFilter(request, response);
-//			return;
-//		}
+		if(UserUtil.isLogined(req))  {
+			chain.doFilter(request, response);
+			return;
+		}
 
 
 		Cookie[] cookies = req.getCookies();
 		UserService service = new UserService();
-		String emailCookie = null;
+		String LoginToken = null;
 		/*
 		 * 这里仅用了email作为cookie并用于验证，极不安全
 		 */
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if ("LOGIN_EMAIL_COOKIE".equals(cookie.getName())) {
-					emailCookie = cookie.getValue();
+				if ("LoginToken".equals(cookie.getName())) {
+					LoginToken = cookie.getValue();
 					try {
-						if (service.findByEmail(emailCookie) != null) {
-							User user = service.findByEmail(emailCookie);
+						if (service.findByEmail(EncryptUtil.DESdecode(LoginToken)) != null) {
+							User user = service.findByEmail(EncryptUtil.DESdecode(LoginToken));
 							ses.setAttribute("loginUser", user);
 							ses.setAttribute("isLogined", true);
 						}
