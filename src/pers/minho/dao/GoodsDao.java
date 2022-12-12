@@ -5,14 +5,15 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import org.apache.naming.java.javaURLContextFactory;
 
 import pers.minho.entity.Goods;
 import pers.minho.util.DBUtil;
-import pers.minho.util.UserUtil;
 
 public class GoodsDao {
 	// 数据库连接
@@ -35,7 +36,7 @@ public class GoodsDao {
 		
 		try {
 			this.prep = this.conn.prepareStatement(sql);
-			prep.setString(1, "/views/static/goods_img/default.png");
+			prep.setString(1, goods.getImg());
 			prep.setInt(2, goods.getType_id());
 			prep.setString(3, goods.getName());
 			prep.setInt(4, goods.getAmount());
@@ -44,7 +45,8 @@ public class GoodsDao {
 			prep.setString(7, goods.getDesc());
 			prep.setInt(8, goods.getSeller_id());
 			java.util.Date date = new java.util.Date();
-			prep.setDate(9, new java.sql.Date(date.getTime()));
+			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			prep.setTimestamp(9, Timestamp.valueOf(simpleDate.format(date)));
 			//prep.setDate(9, (Date)goods.getCreate_date());
 
 			if (prep.executeUpdate() > 0) {
@@ -121,6 +123,7 @@ public class GoodsDao {
 	public List<Goods> findAll() {
 		List<Goods> all = new ArrayList<>();
 		String sql = "SELECT id, img, type_id, `name`, `amount`, price, `status`, `desc`, seller_id, create_date FROM goods";
+		//String sql = "SELECT g.id, g.img, g.type_id, g.`name`, g.price, g.`status`, g.`desc`, g.seller_id, g.create_date, u.nickname FROM `goods` g, `user` u WHERE g.seller_id=u.id";
 
 		try {
 			this.prep = this.conn.prepareStatement(sql);

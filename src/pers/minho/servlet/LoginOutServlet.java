@@ -30,7 +30,7 @@ public class LoginOutServlet extends HttpServlet {
 				Cookie[] cookies = request.getCookies();
 				if (cookies != null) {
 					for (Cookie cookie : cookies) {
-						if (cookie.getName().equals("LOGIN_EMAIL_COOKIE")) {
+						if (cookie.getName().equals("LoginToken")) {
 							Cookie delCookie = new Cookie(cookie.getName(), "");
 							delCookie.setMaxAge(0);
 							response.addCookie(delCookie);
@@ -38,7 +38,8 @@ public class LoginOutServlet extends HttpServlet {
 					}
 				}
 				
-				response.sendRedirect("index.jsp");
+				//response.sendRedirect("index.jsp");
+				response.sendRedirect("index");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

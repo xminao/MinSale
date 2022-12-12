@@ -42,7 +42,9 @@
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">
 					<div class="brand">
-						<img src="<%=basePath%>static/logo.svg" alt="logo">
+						<a href="index">
+							<img src="<%=basePath%>static/logo.svg" alt="logo">
+						</a>
 					</div>
 					<div class="card fat">
 						<div class="card-body">

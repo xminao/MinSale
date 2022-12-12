@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String inputEmail = request.getParameter("inputEmail");
 		String inputPassword = request.getParameter("inputPassword");
 		String autoLogin = request.getParameter("autoLogin");
@@ -48,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("loginUser", user);
 					session.setAttribute("isLogined", true);
 					// 重定向到主页
-					response.sendRedirect("index.jsp");
+					response.sendRedirect("index");
 				} else {
 					request.setAttribute("isLoginOk", "false");
 					request.getRequestDispatcher("/login.jsp").forward(request, response);

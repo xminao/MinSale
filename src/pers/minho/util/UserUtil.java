@@ -8,7 +8,7 @@ public class UserUtil {
 	public static boolean isLogined(HttpServletRequest request) {
 		HttpSession ses = request.getSession();
 		if(ses.getAttribute("isLogined")!=null && ses.getAttribute("isLogined").equals(true) && ses.getAttribute("loginUser")!=null){
-			System.out.println("");
+			System.out.println("已经登录");
 			return true;
 		}
 		return false;

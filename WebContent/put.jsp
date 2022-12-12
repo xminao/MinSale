@@ -19,7 +19,27 @@
 	<jsp:include page="header.jsp" />
 
     <div class="container my-2">
-        <form method="POST" action="put">
+        <form method="POST" action="put" enctype="multipart/form-data">
+
+			<div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-sm" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title text-info" id="exampleModalLabel">提示</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        请完整填写物品信息
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>	
+				
             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                   <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">物品信息</a>
@@ -83,8 +103,8 @@
                         <div class="jumbotron my-5 mx-auto border border-info text-center" style="width: 400px; height: 300px; background-color: #CCE9E4;">
                             <img src="<%=basePath%>static/add_img.png" class="mx-auto d-block" alt="..." style="width: 80px;">
                             <div class="form-group my-2">
-                                <input type="button" id="i-check" value="上传照片" class="btn btn-primary" onclick="$('#i-file').click();">
-							    <input type="file" name="file" id='i-file'  accept=".png, .jpg" onchange="$('#location').val($('#i-file').val());" style="display: none">
+
+							    <input type="file" name="file">
                             </div>
                         </div>
                         <div class="m-auto" style="width: 100px;">
@@ -114,21 +134,30 @@
 </body>
 
 <script>
-    function toStep(arg) {
-        let inputTitle = document.getElementById("inputTitle")
-        let selectType = document.getElementById("selectType")
-        let inputDesc = document.getElementById("inputDesc")
-        let inputPrice = document.getElementById("inputPrice")
-        if (arg === "image") {
-            if (inputTitle.value !== "" && selectType.value !== "" && inputDesc.value !== "" && inputPrice.value !== "") {
-                $('#myTab a[href="#image"]').tab('show')
-            } else {
-            	alert("请完整填写")
-            }
-        } else if (arg === "put") {
-            $('#myTab a[href="#put"]').tab('show')
-        }
-    }
+	
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+	    let target = String(e.target).split("#")[1]
+	
+	    let inputTitle = document.getElementById("inputTitle")
+	    let selectType = document.getElementById("selectType")
+	    let inputDesc = document.getElementById("inputDesc")
+	    let inputPrice = document.getElementById("inputPrice")
+	
+	    if (inputTitle.value === "" || selectType.value === "" || inputDesc.value === "" || inputPrice.value === "") {
+	        if (target === "image" || target === "put") {
+	            $('#myTab a[href="#info"]').tab('show')
+	            $('#myModal').modal('show')
+	        }
+	    }
+	})
+	
+	function toStep(arg) {
+	    if (arg === "image") {
+	        $('#myTab a[href="#image"]').tab('show')
+	    } else if (arg === "put") {
+	        $('#myTab a[href="#put"]').tab('show')
+	    }
+	}
 
 </script>
 </html>

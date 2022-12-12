@@ -2,6 +2,8 @@ package pers.minho.test;
 
 import java.util.List;
 
+import org.apache.naming.java.javaURLContextFactory;
+
 import pers.minho.dao.GoodsDao;
 import pers.minho.dao.UserDao;
 import pers.minho.entity.Goods;
@@ -46,10 +48,14 @@ public class DaoTest {
 //		System.out.println(goods.toString());
 
 // 查找所有商品测试
-		List<Goods> goods = dao.findAll();
-		for (Goods good : goods) {
-			System.out.println(good.toString());
-		}
+//		List<Goods> goods = dao.findAll();
+//		for (Goods good : goods) {
+//			System.out.println(good.toString());
+//		}
+		
+		java.util.Date date = new java.util.Date();
+		java.sql.Timestamp dateTime = new java.sql.Timestamp(date.getTime());
+		System.out.println(dateTime);
 	}
 
 	// 用户操作测试
