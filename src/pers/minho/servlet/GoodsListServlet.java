@@ -30,7 +30,6 @@ public class GoodsListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			System.out.println("刀哥");
 			String currentPage = request.getParameter("currentPage");
 			
 			GoodsService g_service = new GoodsService();
@@ -38,7 +37,7 @@ public class GoodsListServlet extends HttpServlet {
 			List<Goods> goods = g_service.findAll();
 			
 			GoodsPage page = new GoodsPage();
-			page.setPageSize(3);
+			page.setPageSize(5);
 			page.setRows(g_service.findRows());
 			page.setTotalPage(page.getTotalPage());
 			if (currentPage != null) {
@@ -57,21 +56,6 @@ public class GoodsListServlet extends HttpServlet {
 			request.setAttribute("goodsList", goods);
 			request.setAttribute("userMap", map);
 			request.getRequestDispatcher("/lastest_goods.jsp").forward(request, response);
-			//request.getRequestDispatcher("/lastest_goods.jsp").forward(request, response);
-			//response.setIntHeader("Refresh", 0);
-//			Gson gson = new Gson();
-//			
-//			HashMap<String, String> m = new HashMap<String, String>();
-//			
-//			String pageJsonStr = gson.toJson(page);
-//			String goodsJsonStr = gson.toJson(goods_page);
-//			m.put("pageJsonStr", pageJsonStr);
-//			m.put("goodsJsonStr", goodsJsonStr);
-//			String mapJsonStr = gson.toJson(m);
-//			PrintWriter out = response.getWriter();
-//			out.write(mapJsonStr);
-//			out.flush();
-//			out.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

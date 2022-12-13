@@ -34,7 +34,8 @@
 
         <div class="row justify-content-md-start m-sm-auto">
         	<%
-	        	List<Goods> goods = (List<Goods>)request.getAttribute("goodsList");
+	        	//List<Goods> goods=(List<Goods>)request.getAttribute("goodsList");
+        		List<Goods> goods = (List<Goods>)request.getAttribute("goodsPageList");
 	    		Map<Integer, User> map = (Map<Integer, User>)request.getAttribute("userMap");
 	    		for (Goods good : goods) {
         	%>
@@ -62,12 +63,44 @@
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center my-3">
-              <li class="page-item"><a class="page-link" href="#">上一页</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item disabled"><h5 class="text-secondary" tabindex="-1">&emsp;...&emsp;</h5></li>
-              <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+            	<%
+	            	GoodsPage gPage = (GoodsPage)request.getAttribute("goodsPage");
+					int currentPage = gPage.getCurrentPage();
+					int totalPage= gPage.getTotalPage();
+					if (currentPage - 1 > 0) {
+				%>
+					<li class="page-item"><a class="page-link" href="goods?currentPage=<%=currentPage - 1%>">上一页</a></li>
+				<%
+					} else {
+				%>
+					<li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+				<%
+					}
+					
+					for (int i=1; i<=totalPage; i++) {
+						if (i == currentPage) {
+				%>
+              		<li class="page-item active"><a class="page-link" href="goods?currentPage=<%=i %>"><%=i %></a></li>
+				<%
+						} else {
+				%>
+					<li class="page-item"><a class="page-link" href="goods?currentPage=<%=i %>"><%=i %></a></li>
+				<%
+						}
+					}
+				%>
+              		<li class="page-item disabled"><h5 class="text-secondary" tabindex="-1">&emsp;...&emsp;</h5></li>
+              	<%
+              		if (currentPage != totalPage) {
+              	%>
+              		<li class="page-item"><a class="page-link" href="goods?currentPage=<%=currentPage + 1%>">下一页</a></li>
+           		<%
+              		} else {
+           		%>
+           			<li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+       			<%
+          			}
+       			%>
             </ul>
         </nav>
 
