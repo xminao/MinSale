@@ -10,9 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.naming.java.javaURLContextFactory;
-
 import pers.minho.entity.Goods;
+import pers.minho.entity.GoodsPage;
 import pers.minho.util.DBUtil;
 
 public class GoodsDao {
@@ -75,7 +74,7 @@ public class GoodsDao {
 			prep.setInt(6, goods.getStatus());
 			prep.setString(7, goods.getDesc());
 			prep.setInt(8, goods.getSeller_id());
-			prep.setDate(9, (Date)goods.getCreate_date());
+			prep.setDate(9, (Date)goods.getCreate_date()); //改
 			prep.setInt(10, goods.getId());
 
 			if (prep.executeUpdate() > 0) {
@@ -118,6 +117,36 @@ public class GoodsDao {
 		}
 		return goods;
 	}
+	
+	public List<Goods> findByPage(GoodsPage page){
+		List<Goods> page_all = new ArrayList<Goods>();
+		String sql="SELECT * FROM goods LIMIT ?,?";
+		
+		try {
+			this.prep = this.conn.prepareStatement(sql);
+			this.prep.setInt(1, page.getBegin());
+			this.prep.setInt(2, page.getPageSize());
+			ResultSet rSet = this.prep.executeQuery();
+			Goods goods = null;
+			while (rSet.next()) {
+				goods = new Goods();
+				goods.setId(rSet.getInt("id"));
+				goods.setImg(rSet.getString("img"));
+				goods.setType_id(rSet.getInt("type_id"));
+				goods.setName(rSet.getString("name"));
+				goods.setAmount(rSet.getInt("amount"));
+				goods.setPrice(rSet.getDouble("price"));
+				goods.setStatus(rSet.getInt("status"));
+				goods.setDesc(rSet.getString("desc"));
+				goods.setSeller_id(rSet.getInt("seller_id"));
+				goods.setCreate_date(rSet.getDate("create_date"));
+				page_all.add(goods);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return page_all;
+	}
 
 	// 查找所有商品
 	public List<Goods> findAll() {
@@ -148,5 +177,21 @@ public class GoodsDao {
 			e.printStackTrace();
 		}
 		return all;
+	}
+	
+	// 获取商品数量
+	public int findRows() {
+		int rows = 0;
+		String sql = "SELECT COUNT(*) rows FROM goods";
+		try {
+			this.prep = this.conn.prepareStatement(sql);
+			ResultSet rSet = this.prep.executeQuery();
+			if (rSet.next()) {
+				rows = rSet.getInt("rows");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rows;
 	}
 }

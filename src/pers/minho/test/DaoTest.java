@@ -7,6 +7,7 @@ import org.apache.naming.java.javaURLContextFactory;
 import pers.minho.dao.GoodsDao;
 import pers.minho.dao.UserDao;
 import pers.minho.entity.Goods;
+import pers.minho.entity.GoodsPage;
 
 public class DaoTest {
 
@@ -53,9 +54,21 @@ public class DaoTest {
 //			System.out.println(good.toString());
 //		}
 		
-		java.util.Date date = new java.util.Date();
-		java.sql.Timestamp dateTime = new java.sql.Timestamp(date.getTime());
-		System.out.println(dateTime);
+//		java.util.Date date = new java.util.Date();
+//		java.sql.Timestamp dateTime = new java.sql.Timestamp(date.getTime());
+//		System.out.println(dateTime);
+		
+// 分页查询测试
+//		GoodsPage page = new GoodsPage();
+//		page.setCurrentPage(3);
+//		page.setRows(dao.findRows());
+//		page.setPageSize(2);
+//		List<Goods> goods = dao.findByPage(page);
+//		for (Goods good : goods) {
+//			System.out.println(good.toString());
+//		}
+		
+		
 	}
 
 	// 用户操作测试

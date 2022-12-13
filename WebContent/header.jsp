@@ -6,7 +6,6 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<div class="container">
 	<nav class="navbar navbar-expand-lg navbar-light border border-top-0 border-left-0 border-right-0 sticky-top" style="background-color: #fff;">
 	    <a class="navbar-brand mx-5" href="<%=path%>/index">
 	        <img src="<%=basePath%>static/logo.svg" width="40" height="40" alt="">
@@ -46,4 +45,3 @@
 	        <a class="btn btn-danger my-2 my-sm-0 mx-2" href="put.jsp">&emsp;出售&emsp;</a>
 	    </ul>
 	</nav>
-</div>

@@ -133,7 +133,7 @@
     </div>
 </body>
 
-<script>
+<script type="text/javascript">
 	
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 	    let target = String(e.target).split("#")[1]
