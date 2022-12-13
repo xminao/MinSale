@@ -14,7 +14,7 @@
 	<jsp:include page="head.jsp" />
 </head>
     <!-- 导航栏 -->
-    
+<body>
 	<jsp:include page="header.jsp" />
 
     <!-- 商品种类选择 -->
@@ -70,226 +70,43 @@
     <!-- 布局测试 -->
     <div class="container mt-5">
     	<h5 class="mx-2 my-4">最新上架</h5>
-      <div class="row justify-content-md-center">
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <div class="media">
-              <img class="mr-4 my-auto" src="logo.svg" alt="user" style="width: 20%;">
-              <div class="media-body">
-                <p class="card-text m-0"><small>刀哥</small></p>
-                <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-              </div>
-            </div>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="jyt.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-            <h5 class="card-title text-dark font-weight-light">头开过的机油桶</h5>
-            <p class="card-text"><h6 class="font-weight-bold">￥98.0</h6></p>
-            <p class="card-text"><small class="text-muted">八成新</small></p>
-          </div>
-        </div>
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <p class="card-text m-0"><small>刀哥</small></p>
-            <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="rsd.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-              <h5 class="card-title text-dark font-weight-light">热水袋</h4>
-            <p class="card-text"><h6 class="font-weight-bold">￥62.0</h6></p>
-            <p class="card-text"><small class="text-muted">六成新</small></p>
-          </div>
-        </div>
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <p class="card-text m-0"><small>虎哥</small></p>
-            <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="zt.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-              <h5 class="card-title text-dark font-weight-light">两个砖头</h4>
-            <p class="card-text"><h6 class="font-weight-bold">￥22.0</h6></p>
-            <p class="card-text"><small class="text-muted">二成新</small></p>
-          </div>
-        </div>
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <p class="card-text m-0"><small>刀哥</small></p>
-            <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="xb.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-              <h5 class="card-title text-dark font-weight-light">三瓶雪碧</h4>
-            <p class="card-text"><h6 class="font-weight-bold">￥33.0</h6></p>
-            <p class="card-text"><small class="text-muted">八成新</small></p>
-          </div>
-        </div>
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <p class="card-text m-0"><small>刀哥</small></p>
-            <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="xb.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-              <h5 class="card-title text-dark font-weight-light">三瓶雪碧</h4>
-            <p class="card-text"><h6 class="font-weight-bold">￥33.0</h6></p>
-            <p class="card-text"><small class="text-muted">八成新</small></p>
-          </div>
-        </div>
-      </div>
 
-      <div class="row justify-content-md-center">
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <p class="card-text m-0"><small>刀哥</small></p>
-            <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="jyt.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-            <h5 class="card-title text-dark font-weight-light">头开过的机油桶</h5>
-            <p class="card-text"><h6 class="font-weight-bold">￥98.0</h6></p>
-            <p class="card-text"><small class="text-muted">八成新</small></p>
-          </div>
-        </div>
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <p class="card-text m-0"><small>刀哥</small></p>
-            <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="rsd.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-              <h5 class="card-title text-dark font-weight-light">热水袋</h4>
-            <p class="card-text"><h6 class="font-weight-bold">￥62.0</h6></p>
-            <p class="card-text"><small class="text-muted">六成新</small></p>
-          </div>
-        </div>
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <p class="card-text m-0"><small>虎哥</small></p>
-            <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="zt.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-              <h5 class="card-title text-dark font-weight-light">两个砖头</h4>
-            <p class="card-text"><h6 class="font-weight-bold">￥22.0</h6></p>
-            <p class="card-text"><small class="text-muted">二成新</small></p>
-          </div>
-        </div>
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <p class="card-text m-0"><small>刀哥</small></p>
-            <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="xb.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-              <h5 class="card-title text-dark font-weight-light">三瓶雪碧</h4>
-            <p class="card-text"><h6 class="font-weight-bold">￥33.0</h6></p>
-            <p class="card-text"><small class="text-muted">八成新</small></p>
-          </div>
-        </div>
-        <div class="card hvr-grow-shadow m-2" style="width:210px">
-          <div class="card-header py-1">
-            <p class="card-text m-0"><small>刀哥</small></p>
-            <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-          </div>
-          <img class="card-img-top my-2 mx-auto d-block" src="xb.png" alt="Card image" style="width:190px;">
-          <div class="card-body py-2 px-3">
-              <h5 class="card-title text-dark font-weight-light">三瓶雪碧</h4>
-            <p class="card-text"><h6 class="font-weight-bold">￥33.0</h6></p>
-            <p class="card-text"><small class="text-muted">八成新</small></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-center">
-        <a class="btn btn-outline-light btn-lg border text-dark my-4" href="goods">浏览更多</a>
-      </div>
-
-    </div>
-	
-    <!-- 最新上架 -->
-    <div class="container mt-5">
-        <h5 class="mx-2 my-4">最新上架</h5>
-        <div class="d-flex justify-content-center">
-            <div class="card hvr-grow-shadow m-2" style="width:210px">
+			<div class="row justify-content-md-center">
+        	<%
+        		List<Goods> goods = (List<Goods>)request.getAttribute("goodsList");
+	    		Map<Integer, User> map = (Map<Integer, User>)request.getAttribute("userMap");
+	    		for (Goods good : goods) {
+        	%>
+            <div class="card hvr-grow-shadow my-2 mx-2" style="width:210px">
                 <div class="card-header py-1">
-                  <p class="card-text m-0"><small>刀哥</small></p>
-                  <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
+                  <div class="media">
+                    <img class="mr-4 my-auto" src="<%=basePath%>static/logo.svg" alt="user" style="width: 20%;">
+                    <div class="media-body">
+                      <p class="card-text m-0"><small><%=map.get(good.getSeller_id()).getNickname() %></small></p>
+                      <p class="card-text m-0"><small class="text-muted"><%=good.getCreate_date() %></small></p>
+                    </div>
+                  </div>
                 </div>
-                <img class="card-img-top my-2 mx-auto d-block" src="<%=basePath%>static/goods_imgs/jyt.png" alt="Card image" style="width:190px;">
+                <img class="card-img-top my-2 mx-auto d-block" src="<%=good.getImg() %>" alt="Card image" style="width:190px; height:190px;">
                 <div class="card-body py-2 px-3">
-                  <h5 class="card-title text-dark font-weight-light">头开过的机油桶</h5>
-                  <p class="card-text"><h6 class="font-weight-bold">￥98.0</h6></p>
+                  <h5 class="card-title text-dark font-weight-light"><%=good.getName() %></h5>
+                  <p class="card-text"><h6 class="font-weight-bold">￥<%=good.getPrice() %></h6></p>
                   <p class="card-text"><small class="text-muted">八成新</small></p>
                 </div>
             </div>
-            <div class="card hvr-grow-shadow m-2" style="width:210px">
-              <div class="card-header py-1">
-                <p class="card-text m-0"><small>刀哥</small></p>
-                <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-              </div>
-              <img class="card-img-top my-2 mx-auto d-block" src="<%=basePath%>static/goods_imgs/rsd.png" alt="Card image" style="width:190px;">
-              <div class="card-body py-2 px-3">
-                  <h5 class="card-title text-dark font-weight-light">热水袋</h4>
-                <p class="card-text"><h6 class="font-weight-bold">￥62.0</h6></p>
-                <p class="card-text"><small class="text-muted">六成新</small></p>
-              </div>
-            </div>
-            <div class="card hvr-grow-shadow m-2" style="width:210px">
-              <div class="card-header py-1">
-                <p class="card-text m-0"><small>虎哥</small></p>
-                <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-              </div>
-              <img class="card-img-top my-2 mx-auto d-block" src="<%=basePath%>static/goods_imgs/zt.png" alt="Card image" style="width:190px;">
-              <div class="card-body py-2 px-3">
-                  <h5 class="card-title text-dark font-weight-light">两个砖头</h4>
-                <p class="card-text"><h6 class="font-weight-bold">￥22.0</h6></p>
-                <p class="card-text"><small class="text-muted">二成新</small></p>
-              </div>
-            </div>
-            <div class="card hvr-grow-shadow m-2" style="width:210px">
-              <div class="card-header py-1">
-                <p class="card-text m-0"><small>刀哥</small></p>
-                <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-              </div>
-              <img class="card-img-top my-2 mx-auto d-block" src="<%=basePath%>static/goods_imgs/xb.png" alt="Card image" style="width:190px;">
-              <div class="card-body py-2 px-3">
-                  <h5 class="card-title text-dark font-weight-light">三瓶雪碧</h4>
-                <p class="card-text"><h6 class="font-weight-bold">￥33.0</h6></p>
-                <p class="card-text"><small class="text-muted">八成新</small></p>
-              </div>
-            </div>
-            <div class="card hvr-grow-shadow m-2" style="width:210px">
-              <div class="card-header py-1">
-                <p class="card-text m-0"><small>刀哥</small></p>
-                <p class="card-text m-0"><small class="text-muted">5 天前上架</small></p>
-              </div>
-              <img class="card-img-top my-2 mx-auto d-block" src="<%=basePath%>static/goods_imgs/pig.png" alt="Card image" style="width:190px;">
-              <div class="card-body py-2 px-3">
-                  <h5 class="card-title text-dark font-weight-light">一头猪</h4>
-                <p class="card-text"><h6 class="font-weight-bold">￥5888.0</h6></p>
-                <p class="card-text"><small class="text-muted">八成新</small></p>
-              </div>
-            </div>
+            <%
+        		}
+        	%>
         </div>
+        
+		<div class="d-flex justify-content-center">
+			<a class="btn btn-outline-light btn-lg border text-dark my-4" href="goods">浏览更多</a>
+		</div>
+	</div>
 
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-end m-2">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-    </div>
+	<div class="copyright py-4 text-center text-body">
+		<div class="container"><small>Copyright &copy; 敏拍二手 2022</small></div>
+	</div>
+	
 </body>
 </html>

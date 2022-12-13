@@ -29,6 +29,10 @@ public class GoodsService {
 		return dao.findByPage(page);
 	}
 	
+	public List<Goods> findByName(String name) {
+		return dao.findByName(name);
+	}
+	
 	public int findRows() {
 		return dao.findRows();
 	}

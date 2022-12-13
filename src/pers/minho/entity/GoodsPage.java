@@ -6,6 +6,15 @@ public class GoodsPage {
     private int begin;
     private int totalPage;
     private int rows;
+    private String searchName = null;
+
+	public String getSearchName() {
+		return searchName;
+	}
+
+	public void setSearchName(String searchName) {
+		this.searchName = searchName;
+	}
 
 	public int getCurrentPage() {
 		

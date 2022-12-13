@@ -28,12 +28,21 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   
+  <filter>
+    <filter-name>UtilFilter</filter-name>
+    <filter-class>pers.minho.filter.UtilFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UtilFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
   <servlet>
-    <servlet-name>UtilServlet</servlet-name>
-    <servlet-class>pers.minho.servlet.UtilServlet</servlet-class>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>pers.minho.servlet.IndexServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UtilServlet</servlet-name>
+    <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
   
@@ -45,6 +54,7 @@
     <servlet-name>GoodsListServlet</servlet-name>
     <url-pattern>/goods</url-pattern>
   </servlet-mapping>
+  
   
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
@@ -74,6 +84,6 @@
   </servlet-mapping>
   
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>	
+    <welcome-file>index</welcome-file>	
   </welcome-file-list>
 </web-app>

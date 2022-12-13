@@ -1,7 +1,6 @@
 package pers.minho.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,34 +17,27 @@ import pers.minho.entity.User;
 import pers.minho.service.GoodsService;
 import pers.minho.service.UserService;
 
-import com.google.gson.Gson;
-
-@WebServlet("/GoodsListServlet")
-public class GoodsListServlet extends HttpServlet {
+//@WebServlet("/UtilServlet")
+public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public GoodsListServlet() {
+    public IndexServlet() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		String currentPage = request.getParameter("currentPage");
-		String searchName = request.getParameter("searchName");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			GoodsService g_service = new GoodsService();
 			UserService u_service = new UserService();
-			
 			GoodsPage page = new GoodsPage();
-			if (currentPage != null) {
-				page.setCurrentPage(Integer.parseInt(currentPage));
+			// 如果不足十个就只要五个甚至五个以内，保证界面美观
+			if (g_service.findRows() < 10) {
+				page.setPageSize(5);
+			} else {
+				page.setPageSize(10);
 			}
-			if (searchName != null) {
-				page.setSearchName(searchName);
-			}
-			page.setPageSize(10);
+			
 			page.setRows(g_service.findRows());
 			page.setTotalPage(page.getTotalPage());
-
 			List<Goods> goods = g_service.findByPage(page);
 			
 			Map<Integer, User> map = new HashMap<Integer, User>();
@@ -53,10 +45,9 @@ public class GoodsListServlet extends HttpServlet {
 				map.put(good.getSeller_id(), u_service.findById(good.getSeller_id()));
 			}
 			
-			request.setAttribute("goodsPage", page);
-			request.setAttribute("goodsPageList", goods);
+			request.setAttribute("goodsList", goods);
 			request.setAttribute("userMap", map);
-			request.getRequestDispatcher("/lastest_goods.jsp").forward(request, response);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

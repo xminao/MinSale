@@ -120,13 +120,24 @@ public class GoodsDao {
 	
 	public List<Goods> findByPage(GoodsPage page){
 		List<Goods> page_all = new ArrayList<Goods>();
-		String sql="SELECT * FROM goods LIMIT ?,?";
-		
+		String sql = "SELECT * FROM goods LIMIT ?,?";
+		String sql_search = "SELECT * FROM goods WHERE `name` LIKE ? LIMIT ?,?";
 		try {
-			this.prep = this.conn.prepareStatement(sql);
-			this.prep.setInt(1, page.getBegin());
-			this.prep.setInt(2, page.getPageSize());
-			ResultSet rSet = this.prep.executeQuery();
+			ResultSet rSet = null;
+			// 有搜索条件
+			if (page.getSearchName() != null) {
+				this.prep = this.conn.prepareStatement(sql_search);
+				this.prep.setString(1, "%" + page.getSearchName() + "%");
+				this.prep.setInt(2, page.getBegin());
+				this.prep.setInt(3, page.getPageSize());
+				rSet = this.prep.executeQuery();
+				
+			} else {
+				this.prep = this.conn.prepareStatement(sql);
+				this.prep.setInt(1, page.getBegin());
+				this.prep.setInt(2, page.getPageSize());
+				rSet = this.prep.executeQuery();
+			}
 			Goods goods = null;
 			while (rSet.next()) {
 				goods = new Goods();
@@ -146,6 +157,37 @@ public class GoodsDao {
 			e.printStackTrace();
 		}
 		return page_all;
+	}
+	
+	// 根据商品名查找
+	public List<Goods> findByName(String name) {
+		List<Goods> all = new ArrayList<Goods>();
+		String sql = "SELECT * FROM goods WHERE `name` LIKE ?";
+		
+		try {
+			this.prep = this.conn.prepareStatement(sql);
+			this.prep.setString(1, "%" + name + "%");
+			ResultSet rSet = this.prep.executeQuery();
+			Goods goods = null;
+			while (rSet.next()) {
+				goods = new Goods();
+				goods.setId(rSet.getInt(1));
+				goods.setImg(rSet.getString(2));
+				goods.setType_id(rSet.getInt(3));
+				goods.setName(rSet.getString(4));
+				goods.setAmount(rSet.getInt(5));
+				goods.setPrice(rSet.getDouble(6));
+				goods.setStatus(rSet.getInt(7));
+				goods.setDesc(rSet.getString(8));
+				goods.setSeller_id(rSet.getInt(9));
+				goods.setCreate_date(rSet.getDate(10));
+				all.add(goods);
+			}
+			this.prep.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return all;
 	}
 
 	// 查找所有商品

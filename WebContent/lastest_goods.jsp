@@ -23,10 +23,20 @@
     <div class="container mt-5 p-0 border" style="background-color: #fff;">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light border">
-            <a class="navbar-brand" href="#">最新上架</a>
+        <%
+        	if (request.getParameter("searchName") == null) {
+        %>
+            <a class="navbar-brand display-4" href="#">最新上架</a>
+       	<%
+        	} else {
+       	%>
+       		<a class="navbar-brand text-secondary" href="#">搜索 "<span class="text-success"><%=request.getParameter("searchName") %></span>" 的结果</a>
+   		<%
+    		}
+   		%>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="输入商品名" aria-label="Search">
+              <form class="form-inline my-2 my-lg-0" action="goods" method="post">
+                <input class="form-control mr-sm-2" type="search" placeholder="输入商品名" aria-label="Search" name="searchName">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">查找商品</button>
               </form>
             </div>

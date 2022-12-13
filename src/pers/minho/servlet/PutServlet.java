@@ -104,30 +104,9 @@ public class PutServlet extends HttpServlet {
 						response.sendRedirect("index");
 					}
 				}
+			} else {
+				response.sendRedirect("index");
 			}
-				
-//				String inputTitle = request.getParameter("inputTitle");
-//				int selectType = Integer.parseInt(request.getParameter("selectType"));
-//				String inputDesc = request.getParameter("inputDesc");
-//				double inputPrice = Double.parseDouble(request.getParameter("inputPrice"));
-//				User user = (User)ses.getAttribute("loginUser");
-//				Goods goods = null;
-//				
-//				if (user != null) {
-//					goods = new Goods();
-//					goods.setType_id(selectType);
-//					goods.setName(inputTitle);
-//					goods.setAmount(1);
-//					goods.setPrice(inputPrice);
-//					goods.setStatus(1);
-//					goods.setDesc(inputDesc);
-//					goods.setSeller_id(user.getId());
-//					
-//					if (g_service.addGoods(goods)) {
-//						// 重定向到主页
-//						response.sendRedirect("index.jsp");
-//					}
-//				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
