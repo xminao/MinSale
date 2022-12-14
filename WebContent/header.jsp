@@ -20,28 +20,45 @@
 		HttpSession ses = request.getSession();
 		if (UserUtil.isLogined(request)) {
 			User user = (User)ses.getAttribute("loginUser");
+			int cartAmount = (Integer)ses.getAttribute("cartAmount");
 	%>
+		<a class="navbar-brand mx-3" href="cart">
+            <img class="" src="<%=basePath%>static/cart.png" width="25" height="25" alt="">
+            <%
+            	if (cartAmount != 0) {
+            %>
+            	<span class="badge badge-pill badge-danger py-0 px-1"><%=cartAmount %></span>
+            <%
+            	}
+            %>
+        </a>
+
+        <a class="navbar-brand mx-3" href="#">
+            <img class="" src="<%=basePath%>static/chat.png" width="25" height="25" alt="">
+            <span class="badge badge-pill badge-danger py-0 px-1">0</span>
+        </a>
+        
 		<div class="dropdown show">
-		          <a class="nav-item nav-link dropdown-toggle border-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: transparent; color: #000000;">
-		            <%=user.getNickname()%>
-		          </a>
-		   
-		          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-		            <a class="dropdown-item" href="#">个人中心</a>
-		            <a class="dropdown-item" href="LoginOutServlet">登出</a>
-		          </div>
+	          <a class="nav-item nav-link dropdown-toggle border-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: transparent; color: #000000;">
+	            <%=user.getNickname()%>
+	          </a>
+	   
+	          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	            <a class="dropdown-item" href="#">个人中心</a>
+	            <a class="dropdown-item" href="LoginOutServlet">登出</a>
+	          </div>
 		</div>
 	<% 
 		} else {
 	%>
 	    <ul class="navbar-nav">
-	      	<a class="btn btn-outline-light text-dark mx-2 my-2 my-sm-0" href="register.jsp">注册</a>
-	        <a class="btn btn-outline-light text-dark mx-2 my-2 my-sm-0" href="login.jsp">登录</a>
+	      	<a class="btn btn-outline-light text-dark mx-2 my-2 my-sm-0" href="register">注册</a>
+	        <a class="btn btn-outline-light text-dark mx-2 my-2 my-sm-0" href="login">登录</a>
 	    </ul>
 	<%
 		}
 	%>
 	    <ul class="navbar-nav">
-	        <a class="btn btn-danger my-2 my-sm-0 mx-2" href="put.jsp">&emsp;出售&emsp;</a>
+	        <a class="btn btn-success my-2 my-sm-0 mx-2" href="put.jsp">&emsp;出售&emsp;</a>
 	    </ul>
 	</nav>

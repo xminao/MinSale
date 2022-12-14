@@ -4,12 +4,20 @@ import java.util.List;
 
 import org.apache.naming.java.javaURLContextFactory;
 
+import pers.minho.dao.CartDao;
 import pers.minho.dao.GoodsDao;
 import pers.minho.dao.UserDao;
 import pers.minho.entity.Goods;
 import pers.minho.entity.GoodsPage;
 
 public class DaoTest {
+	
+	public static void CartDaoTest() {
+		CartDao dao = new CartDao();
+		
+// 获取用户购物车数量
+		System.out.println(dao.findRowsByUserID(6));
+	}
 
 	// 商品操作测试
 	public static void GoodsDaoTest() {
@@ -45,8 +53,8 @@ public class DaoTest {
 //		System.out.println(flag);
 
 // 根据ID查找商品测试
-		Goods goods = dao.findById(13);
-		System.out.println(goods.toString());
+//		Goods goods = dao.findById(13);
+//		System.out.println(goods.toString());
 
 // 查找所有商品测试
 //		List<Goods> goods = dao.findAll();
@@ -118,7 +126,8 @@ public class DaoTest {
 	}
 
 	public static void main(String[] args) {
-		GoodsDaoTest();
+		//GoodsDaoTest();
 		//UserDaoTest();
+		CartDaoTest();
 	}
 }

@@ -64,6 +64,15 @@
     <url-pattern>/goods_info</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>pers.minho.servlet.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
+  
   
   <servlet>
     <servlet-name>LoginServlet</servlet-name>

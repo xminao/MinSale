@@ -16,8 +16,10 @@
 <body class="my-login-page">
 
 	<%
-		if(request.getAttribute("isLoginOk") != null && request.getAttribute("isLoginOk").equals("false")) {
-			out.print("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-hidden=\"true\">&times;</button>登录失败，请检查邮箱和密码</div>");
+		if (request.getParameter("inputEmail") != null && request.getParameter("inputPassword") != null) {
+			if(request.getAttribute("isLoginOk") != null && request.getAttribute("isLoginOk").equals("false")) {
+				out.print("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-hidden=\"true\">&times;</button>登录失败，请检查邮箱和密码</div>");
+			}
 		}
 	%>
 	

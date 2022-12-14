@@ -15,7 +15,8 @@
 
 <body class="my-login-page">
 	<%
-		if(request.getAttribute("isRegister")!=null) {
+		if (request.getParameter("inputEmail") != null && request.getParameter("inputPassword") != null && request.getParameter("inputPasswordConfirm") != null && request.getParameter("nickname") != null) {
+			if(request.getAttribute("isRegister")!=null) {
 	%>
 	<div class="alert alert-danger" role="alert">
 		<%
@@ -34,6 +35,7 @@
 		%>
 	</div>
 	<%
+			}
 		}
 	%>
 	

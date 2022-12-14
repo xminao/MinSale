@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pers.minho.entity.CartItem;
 import pers.minho.entity.User;
+import pers.minho.service.CartService;
 import pers.minho.service.UserService;
 import pers.minho.util.EncryptUtil;
 
@@ -48,6 +50,9 @@ public class LoginServlet extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("loginUser", user);
 					session.setAttribute("isLogined", true);
+					
+					CartService c_service = new CartService();
+					session.setAttribute("cartAmount", c_service.findRowsByUserID(user.getId()));
 					// 重定向到主页
 					response.sendRedirect("index");
 				} else {

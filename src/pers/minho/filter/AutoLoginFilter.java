@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import pers.minho.entity.User;
+import pers.minho.service.CartService;
 import pers.minho.service.UserService;
 import pers.minho.util.EncryptUtil;
 import pers.minho.util.UserUtil;
@@ -42,9 +43,7 @@ public class AutoLoginFilter extends HttpFilter implements Filter {
 		Cookie[] cookies = req.getCookies();
 		UserService service = new UserService();
 		String LoginToken = null;
-		/*
-		 * 这里仅用了email作为cookie并用于验证，极不安全
-		 */
+
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if ("LoginToken".equals(cookie.getName())) {
@@ -54,6 +53,9 @@ public class AutoLoginFilter extends HttpFilter implements Filter {
 							User user = service.findByEmail(EncryptUtil.DESdecode(LoginToken));
 							ses.setAttribute("loginUser", user);
 							ses.setAttribute("isLogined", true);
+							
+							CartService c_service = new CartService();
+							ses.setAttribute("cartAmount", c_service.findRowsByUserID(user.getId()));
 						}
 					} catch (Exception e) {
 						e.printStackTrace();

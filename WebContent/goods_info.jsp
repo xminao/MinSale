@@ -74,7 +74,7 @@
                 <li class="list-group-item">
                     <div class="d-flex flex-row">
                         <a href="#" class="btn btn-light border-danger my-2 mr-3 btn-lg" style="color: red; background-color: #fff;">立即购买</a>
-                        <a href="#" class="btn btn-danger my-2 btn-lg">加入购物车</a>
+                        <a href="AddCartServlet?goodsId=<%=goods.getId() %>" class="btn btn-danger my-2 btn-lg">加入购物车</a>
                     </div>
                 </li>
                 </ul>

@@ -1,11 +1,11 @@
 package pers.minho.entity;
 
 public class GoodsPage {
-    private int currentPage = 1;
-    private int pageSize = 5;
-    private int begin;
-    private int totalPage;
-    private int rows;
+    private Integer currentPage = 1;
+    private Integer pageSize = 5;
+    private Integer begin;
+    private Integer totalPage;
+    private Integer rows;
     private String searchName = null;
 
 	public String getSearchName() {

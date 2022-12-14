@@ -12,7 +12,7 @@ import pers.minho.service.GoodsService;
 import pers.minho.service.UserService;
 
 
-@WebServlet("/GoodsInfoServlet")
+//@WebServlet("/GoodsInfoServlet")
 public class GoodsInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
