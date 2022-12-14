@@ -104,8 +104,6 @@ public class PutServlet extends HttpServlet {
 						response.sendRedirect("index");
 					}
 				}
-			} else {
-				response.sendRedirect("index");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

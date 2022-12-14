@@ -18,8 +18,10 @@
 	<jsp:include page="header.jsp" />
 
     <!-- 商品种类选择 -->
-    <div class="container">
-      <h5 class="mx-2 my-3">想在敏拍找些什么？</h5>
+    <div class="container mt-5 p-0 border">
+      <nav class="navbar navbar-light bg-light border">
+        <span class="navbar-brand mb-0 display-3">想在敏拍找些什么？</span>
+      </nav>
       <div class="d-flex justify-content-center">
           <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 170px; background-color: #F0F1F1;">
             <img src="<%=basePath%>static/type_imgs/gadgets.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 80px;">
@@ -68,16 +70,18 @@
 
 	<!-- 最新上架 -->
     <!-- 布局测试 -->
-    <div class="container mt-5">
-    	<h5 class="mx-2 my-4">最新上架</h5>
+    <div class="container mt-5 p-0 border">
+    	<nav class="navbar navbar-light bg-light border">
+        	<span class="navbar-brand mb-0 display-3">最新上架</span>
+      	</nav>
 
-			<div class="row justify-content-md-center">
+		<div class="row justify-content-md-center">
         	<%
         		List<Goods> goods = (List<Goods>)request.getAttribute("goodsList");
 	    		Map<Integer, User> map = (Map<Integer, User>)request.getAttribute("userMap");
 	    		for (Goods good : goods) {
         	%>
-            <div class="card hvr-grow-shadow my-2 mx-2" style="width:210px">
+            <div class="card hvr-grow-shadow my-2 mx-2" style="width:210px;cursor:pointer;" onclick="window.location.href='<%=path%>/goods_info?goodsid=<%=good.getId() %>'">
                 <div class="card-header py-1">
                   <div class="media">
                     <img class="mr-4 my-auto" src="<%=basePath%>static/logo.svg" alt="user" style="width: 20%;">

@@ -55,6 +55,15 @@
     <url-pattern>/goods</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>GoodsInfoServlet</servlet-name>
+    <servlet-class>pers.minho.servlet.GoodsInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoodsInfoServlet</servlet-name>
+    <url-pattern>/goods_info</url-pattern>
+  </servlet-mapping>
+  
   
   <servlet>
     <servlet-name>LoginServlet</servlet-name>

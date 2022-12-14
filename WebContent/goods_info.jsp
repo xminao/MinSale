@@ -28,23 +28,27 @@
         </nav>
 
         <div class="d-flex flex-row justify-content-center">
+            <%
+            	Goods goods = (Goods)request.getAttribute("goods");
+            	User seller = (User)request.getAttribute("seller");
+            %>
             <!-- 商品图片 -->
             <div class="card my-5 mb-3 mx-4" style="width: 350px; height: 350px;">
-                <img class="card-img-top m-auto" src="test.jpg" alt="Card image cap" style="width: 100%; height: 100%;">
+                <img class="card-img-top m-auto" src="<%=goods.getImg() %>" alt="IMAGE" style="width: 100%; height: 100%;">
             </div>
 
             <!--  商品信息 -->
             <div class="card my-5 mx-2 border-0" style="width: 600px;">
                 <ul class="list-group list-group-flush">
-                <li class="list-group-item text-dark h2">刀哥的机油桶</li>
+                <li class="list-group-item text-dark h2"><%=goods.getName() %></li>
                 <li class="list-group-item">
                     <p> 售价：
-                        <span class="text-danger h4">￥200</span>
+                        <span class="text-danger h4">￥<%=goods.getPrice() %></span>
                     </p>
                     <p>简介：
-                        <div class="card mr-auto">
+                        <div class="card" style="width: 70%;">
                             <div class="card-body">
-                            刀哥用头开过的机油桶
+                            <%=goods.getDesc() %>
                             </div>
                         </div>
                     </p>
@@ -54,11 +58,11 @@
                             <div class="card border-0" style="width: 250px;">
                                 <div class="row no-gutters">
                                   <div class="col-3">
-                                    <img class="m-2 rounded-circle" src="logo.svg" alt="user" style="width: 70%;">
+                                    <img class="m-2 rounded-circle" src="<%=basePath%>static/logo.svg" alt="user" style="width: 70%;">
                                   </div>
                                   <div class="col-9">
                                     <div class="card-body p-1 m-1">
-                                        <p class="card-text m-0"><small>刀哥</small><a href="#" class="badge badge-info ml-2 p-1">联系用户</a></p>
+                                        <p class="card-text m-0"><small><%=seller.getNickname() %></small><a href="#" class="badge badge-info ml-2 p-1">联系用户</a></p>
                                         <p class="card-text m-0"><small class="text-muted">共 5 件商品在出售</small></p>
                                     </div>
                                   </div>
@@ -69,8 +73,8 @@
                 </li>
                 <li class="list-group-item">
                     <div class="d-flex flex-row">
-                        <a href="#" class="btn btn-light border-danger my-2 mr-3" style="color: red; background-color: #fff;">立即购买</a>
-                        <a href="#" class="btn btn-danger my-2">加入购物车</a>
+                        <a href="#" class="btn btn-light border-danger my-2 mr-3 btn-lg" style="color: red; background-color: #fff;">立即购买</a>
+                        <a href="#" class="btn btn-danger my-2 btn-lg">加入购物车</a>
                     </div>
                 </li>
                 </ul>

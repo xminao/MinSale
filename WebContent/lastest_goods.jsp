@@ -49,7 +49,7 @@
 	    		Map<Integer, User> map = (Map<Integer, User>)request.getAttribute("userMap");
 	    		for (Goods good : goods) {
         	%>
-            <div class="card hvr-grow-shadow my-2 mx-2" style="width:211px">
+            <div class="card hvr-grow-shadow my-2 mx-2" style="width:211px;cursor:pointer;" onclick="window.location.href='<%=path%>/goods_info?goodsid=<%=good.getId() %>'">
                 <div class="card-header py-1">
                   <div class="media">
                     <img class="mr-4 my-auto" src="<%=basePath%>static/logo.svg" alt="user" style="width: 20%;">

@@ -45,8 +45,8 @@ public class DaoTest {
 //		System.out.println(flag);
 
 // 根据ID查找商品测试
-//		Goods goods = dao.findById(1);
-//		System.out.println(goods.toString());
+		Goods goods = dao.findById(13);
+		System.out.println(goods.toString());
 
 // 查找所有商品测试
 //		List<Goods> goods = dao.findAll();
