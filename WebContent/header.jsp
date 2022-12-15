@@ -6,9 +6,9 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-	<nav class="navbar navbar-expand-lg navbar-light border border-top-0 border-left-0 border-right-0 sticky-top" style="background-color: #fff;">
+	<nav class="navbar navbar-expand-lg navbar-light border border-top-0 border-left-0 border-right-0 sticky-top" style="background-color: #fff;" id="mainNav">
 	    <a class="navbar-brand mx-5" href="<%=path%>/index">
-	        <img src="<%=basePath%>static/logo.svg" width="40" height="40" alt="">
+	        <img id="logo" src="<%=basePath%>static/logo.svg" width="40" height="40" alt="">
 	    </a>
 	  
 	    <form class="form-inline my-2 my-lg-0 mr-auto">
@@ -62,3 +62,47 @@
 	        <a class="btn btn-success my-2 my-sm-0 mx-2" href="put">&emsp;出售&emsp;</a>
 	    </ul>
 	</nav>
+	
+	<!-- 导航栏变化 -->
+	<script>
+        window.addEventListener('DOMContentLoaded', event => {
+          // Navbar shrink function
+          var navbarShrink = function () {
+              const navbarCollapsible = document.body.querySelector('#mainNav');
+              if (!navbarCollapsible) {
+                  return;
+              }
+              if (window.scrollY === 0) {
+                  navbarCollapsible.classList.remove('navbar-shrink')
+              } else {
+                  navbarCollapsible.classList.add('navbar-shrink')
+              }
+
+          };
+
+          navbarShrink();
+
+          document.addEventListener('scroll', navbarShrink);
+
+          const mainNav = document.body.querySelector('#mainNav');
+          if (mainNav) {
+              new bootstrap.ScrollSpy(document.body, {
+                  target: '#mainNav',
+                  offset: 72,
+              });
+          };
+
+          const navbarToggler = document.body.querySelector('.navbar-toggler');
+          const responsiveNavItems = [].slice.call(
+              document.querySelectorAll('#navbarResponsive .nav-link')
+          );
+          responsiveNavItems.map(function (responsiveNavItem) {
+              responsiveNavItem.addEventListener('click', () => {
+                  if (window.getComputedStyle(navbarToggler).display !== 'none') {
+                      navbarToggler.click();
+                  }
+              });
+          });
+
+          });
+      </script>
