@@ -126,11 +126,9 @@
                 </div>
             </div>
         </form>
-
-        <div class="d-flex justify-content-center">
-
-        </div>
     </div>
+    
+	<jsp:include page="footer.jsp" />
 </body>
 
 <script type="text/javascript">

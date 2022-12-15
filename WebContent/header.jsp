@@ -59,6 +59,6 @@
 		}
 	%>
 	    <ul class="navbar-nav">
-	        <a class="btn btn-success my-2 my-sm-0 mx-2" href="put.jsp">&emsp;出售&emsp;</a>
+	        <a class="btn btn-success my-2 my-sm-0 mx-2" href="put">&emsp;出售&emsp;</a>
 	    </ul>
 	</nav>

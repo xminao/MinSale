@@ -25,6 +25,10 @@ public class IndexServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String msg = request.getParameter("message");
+		if (msg != null) {
+			System.out.println(msg);
+		}
 		try {
 			GoodsService g_service = new GoodsService();
 			UserService u_service = new UserService();

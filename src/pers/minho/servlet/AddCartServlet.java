@@ -27,28 +27,33 @@ public class AddCartServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession ses = (HttpSession)request.getSession();
-		String goodsId = request.getParameter("goodsId");
+		String goodsId = request.getParameter("id");
 		try {
 			if (UserUtil.isLogined(request)) {
 				CartService c_service = new CartService();
 				GoodsService g_service = new GoodsService();
 				User user = (User)ses.getAttribute("loginUser");
 				Goods good = g_service.findById(Integer.parseInt(goodsId));
-				CartItem item = null;
-				if (good != null) {
-					item = new CartItem();
-					item.setUser_id(user.getId());
-					item.setGoods_id(good.getId());
-					item.setSeller_id(good.getSeller_id());
-					
-					if (c_service.addCartItem(item)) {
-						response.sendRedirect("cart");
-					} else {
-						request.getRequestDispatcher("/goods_info?goodsid=" + goodsId).forward(request, response);
+				
+				if (user.getId() != good.getSeller_id()) {
+					CartItem item = null;
+					if (good != null) {
+						item = new CartItem();
+						item.setUser_id(user.getId());
+						item.setGoods_id(good.getId());
+						item.setSeller_id(good.getSeller_id());
+						
+						if (c_service.addCartItem(item)) {
+							response.sendRedirect("cart");
+						} else {
+							request.getRequestDispatcher("/goods_info?id=" + goodsId).forward(request, response);
+						}
 					}
+				} else {
+					response.sendRedirect("index");
 				}
 			} else {
-				response.sendRedirect("index");
+				response.sendRedirect("login");
 			}
 			
 		} catch (Exception e) {

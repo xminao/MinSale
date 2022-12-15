@@ -29,8 +29,10 @@
 
         <div class="d-flex flex-row justify-content-center">
             <%
+            	HttpSession ses = request.getSession();
             	Goods goods = (Goods)request.getAttribute("goods");
             	User seller = (User)request.getAttribute("seller");
+            	User user = (User)ses.getAttribute("loginUser");
             %>
             <!-- 商品图片 -->
             <div class="card my-5 mb-3 mx-4" style="width: 350px; height: 350px;">
@@ -42,18 +44,23 @@
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item text-dark h2"><%=goods.getName() %></li>
                 <li class="list-group-item">
-                    <p> 售价：
+                    <p class="text-secondary"> 售价：
                         <span class="text-danger h4">￥<%=goods.getPrice() %></span>
                     </p>
-                    <p>简介：
+                    <p class="text-secondary">简介：
                         <div class="card" style="width: 70%;">
                             <div class="card-body">
                             <%=goods.getDesc() %>
                             </div>
                         </div>
                     </p>
-                    <p>
-                        卖家：
+                    <p class="text-secondary">上架时间：
+                        <span class="text-body"><%=goods.getCreate_date() %></span>
+                    </p>
+                    <%
+	                    if (user == null || (user != null && user.getId() != seller.getId())) {
+                    %>
+                    <p class="text-secondary">卖家：
                         <div class="d-flex flex-row justify-content-start p-0" style="background-color: #fff;">
                             <div class="card border-0" style="width: 250px;">
                                 <div class="row no-gutters">
@@ -70,11 +77,25 @@
                             </div>
                         </div>
                     </p>
+                    <%
+	            		}
+                    %>
                 </li>
                 <li class="list-group-item">
                     <div class="d-flex flex-row">
-                        <a href="#" class="btn btn-light border-danger my-2 mr-3 btn-lg" style="color: red; background-color: #fff;">立即购买</a>
-                        <a href="AddCartServlet?goodsId=<%=goods.getId() %>" class="btn btn-danger my-2 btn-lg">加入购物车</a>
+                    	<%
+                    		if (user == null || (user != null && user.getId() != seller.getId())) {
+                    	%>
+                    		<a href="#" class="btn btn-light border-danger my-2 mr-3 btn-lg" style="color: red; background-color: #fff;">立即购买</a>
+	                        <a href="AddCartServlet?id=<%=goods.getId() %>" class="btn btn-danger my-2 btn-lg">加入购物车</a>
+                    	<%
+                    		} else {	
+                    	%>
+							<a href="#" class="btn btn-info my-2 mr-3">修改商品信息</a>
+                        	<a href="#" class="btn btn-danger my-2">下架商品</a>
+                    	<%
+                    		}
+                    	%>
                     </div>
                 </li>
                 </ul>
@@ -85,9 +106,7 @@
 
     </div>
 
-  <div class="copyright py-4 text-center text-body">
-    <div class="container"><small>Copyright &copy; 敏拍二手 2022</small></div>
-  </div>
+    <jsp:include page="footer.jsp" />
 
 </body>
 

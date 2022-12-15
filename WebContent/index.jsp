@@ -16,6 +16,18 @@
     <!-- 导航栏 -->
 <body>
 	<jsp:include page="header.jsp" />
+	
+	<!-- 欢迎头 -->
+	<div class="container-fluid d-flex align-items-center masthead flex-column p-5" style="background-color: #1abc9c;">
+      <img class="masthead-avatar mb-5" src="<%=basePath%>static/avataaars.svg" alt="..." />
+      <h1 class="masthead-heading display-1 text-light font-weight-bold mb-0">敏拍二手</h1>
+      <!-- Icon Divider-->
+      <div class="divider-custom divider-light">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon"><i class="bi bi-award-fill"></i></div>
+          <div class="divider-custom-line"></div>
+      </div>
+    </div>
 
     <!-- 商品种类选择 -->
     <div class="container mt-5 p-0 border">
@@ -81,7 +93,7 @@
 	    		Map<Integer, User> map = (Map<Integer, User>)request.getAttribute("userMap");
 	    		for (Goods good : goods) {
         	%>
-            <div class="card hvr-grow-shadow my-2 mx-2" style="width:210px;cursor:pointer;" onclick="window.location.href='<%=path%>/goods_info?goodsid=<%=good.getId() %>'">
+            <div class="card hvr-grow-shadow my-2 mx-2" style="width:210px;cursor:pointer;" onclick="window.location.href='<%=path%>/goods_info?id=<%=good.getId() %>'">
                 <div class="card-header py-1">
                   <div class="media">
                     <img class="mr-4 my-auto" src="<%=basePath%>static/logo.svg" alt="user" style="width: 20%;">
@@ -107,10 +119,8 @@
 			<a class="btn btn-outline-light btn-lg border text-dark my-4" href="goods">浏览更多</a>
 		</div>
 	</div>
-
-	<div class="copyright py-4 text-center text-body">
-		<div class="container"><small>Copyright &copy; 敏拍二手 2022</small></div>
-	</div>
+	
+	<jsp:include page="footer.jsp" />
 	
 </body>
 </html>

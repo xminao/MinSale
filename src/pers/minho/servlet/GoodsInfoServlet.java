@@ -21,7 +21,7 @@ public class GoodsInfoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("goodsid");
+		String id = request.getParameter("id");
 		try {
 			GoodsService g_service = new GoodsService();
 			UserService u_service = new UserService();

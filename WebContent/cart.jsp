@@ -68,7 +68,7 @@
                     <!-- 商品操作 -->
                     <div class="card ml-2 border-0" style="width: 15%;">
                         <div class="card-body text text-center mt-5">
-                            <a href="DelCartServlet?delId=<%=entry.getKey() %>" class="btn btn-danger" for="customCheck1">删除</a>
+                            <a href="DelCartServlet?delId=<%=entry.getKey() %>" class="btn btn-danger">删除</a>
                         </div>
                     </div>
                 </li>
@@ -92,15 +92,9 @@
             </nav>
         </div>
 
-        <div class="d-flex flex-row justify-content-center">
-
-        </div>
-
     </div>
-
-  <div class="copyright py-4 text-center text-body">
-    <div class="container"><small>Copyright &copy; 敏拍二手 2022</small></div>
-  </div>
+    
+    <jsp:include page="footer.jsp" />
 
 </body>
 
