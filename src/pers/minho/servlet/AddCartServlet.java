@@ -1,6 +1,8 @@
 package pers.minho.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,12 +36,20 @@ public class AddCartServlet extends HttpServlet {
 				GoodsService g_service = new GoodsService();
 				User user = (User)ses.getAttribute("loginUser");
 				Goods good = g_service.findById(Integer.parseInt(goodsId));
-				
+				List<CartItem> cart = c_service.findByUserID(user.getId());
+				// 判断是不是自己上架的商品
 				if (user.getId() != good.getSeller_id()) {
+					// 判断是不是已经加入购物车
+					for (CartItem item : cart) {
+						if (item.getGoods_id() == good.getId()) {
+							response.sendRedirect("cart");
+							return;
+						}
+					}
 					CartItem item = null;
 					if (good != null) {
 						item = new CartItem();
-						item.setUser_id(user.getId());
+						item.setUser_id(user.getId()); 
 						item.setGoods_id(good.getId());
 						item.setSeller_id(good.getSeller_id());
 						

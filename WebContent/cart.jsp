@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <!-- 商品信息 -->
-                    <div class="card d-flex flex-row ml-0 border-top-0 border-bottom-0 border-left-0" style="width: 80%; height: 100%; cursor:pointer;" onclick="window.location.href='<%=path%>/goods_info?goodsid=<%=good.getId() %>'">
+                    <div class="card d-flex flex-row ml-0 border-top-0 border-bottom-0 border-left-0" style="width: 80%; height: 100%; cursor:pointer;" onclick="window.location.href='<%=path%>/goods_info?id=<%=good.getId() %>'">
                         <div class="card d-flex flex-row border-0 m-3">
                             <!-- 商品图片 -->
                             <img class="card-img-top mr-3" src="<%=good.getImg() %>" alt="图片走丢啦" style="width: 150px; height: 150px;">

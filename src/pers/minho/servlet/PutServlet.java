@@ -96,7 +96,7 @@ public class PutServlet extends HttpServlet {
 	                }
 	                
 	                goods.setAmount(1);
-	                goods.setStatus(1);
+	                goods.setIs_del(0);
 	                goods.setSeller_id(user.getId());
 	                
 					if (g_service.addGoods(goods)) {

@@ -16,6 +16,10 @@ public class GoodsService {
 	public boolean updateGoods(Goods goods) {
 		return dao.updateGoods(goods);
 	}
+	
+	public boolean delGoods(int id) {
+		return dao.delGoods(id);
+	}
 
 	public Goods findById(int id) {
 		return dao.findById(id);

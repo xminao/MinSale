@@ -17,6 +17,10 @@ public class CartService {
 		return dao.delCartItem(ItemId);
 	}
 	
+	public CartItem findByID(int id) {
+		return dao.findByID(id);
+	}
+	
 	public List<CartItem> findByUserID(int id) {
 		return dao.findByUserID(id);
 	}

@@ -31,7 +31,7 @@ public class GoodsDao {
 	// 添加用户
 	public boolean addGoods(Goods goods) {
 		boolean flag = false;
-		String sql = "INSERT INTO `goods`(img, type_id, `name`, `amount`, price, `status`, `desc`, seller_id, create_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO `goods`(img, type_id, `name`, `amount`, price, `is_del`, `desc`, seller_id, create_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			this.prep = this.conn.prepareStatement(sql);
@@ -40,7 +40,7 @@ public class GoodsDao {
 			prep.setString(3, goods.getName());
 			prep.setInt(4, goods.getAmount());
 			prep.setDouble(5, goods.getPrice());
-			prep.setInt(6, goods.getStatus());
+			prep.setInt(6, goods.getIs_del());
 			prep.setString(7, goods.getDesc());
 			prep.setInt(8, goods.getSeller_id());
 			java.util.Date date = new java.util.Date();
@@ -62,7 +62,7 @@ public class GoodsDao {
 	// 更新商品
 	public boolean updateGoods(Goods goods) {
 		boolean flag = false;
-		String sql = "UPDATE goods SET img=?, type_id=?, `name`=?, `amount`=?, price=?, `status`=?, `desc`=?, seller_id=?, create_date=? WHERE id=?";
+		String sql = "UPDATE goods SET img=?, type_id=?, `name`=?, `amount`=?, price=?, `is_del`=?, `desc`=?, seller_id=?, create_date=? WHERE id=?";
 
 		try {
 			this.prep = this.conn.prepareStatement(sql);
@@ -71,7 +71,7 @@ public class GoodsDao {
 			prep.setString(3, goods.getName());
 			prep.setInt(4, goods.getAmount());
 			prep.setDouble(5, goods.getPrice());
-			prep.setInt(6, goods.getStatus());
+			prep.setInt(6, goods.getIs_del());
 			prep.setString(7, goods.getDesc());
 			prep.setInt(8, goods.getSeller_id());
 			prep.setDate(9, (Date)goods.getCreate_date()); //改
@@ -88,10 +88,28 @@ public class GoodsDao {
 		return flag;
 	}
 
+	// 下架商品
+	public boolean delGoods(int id) {
+		boolean flag = false;
+		String sql = "UPDATE `goods` SET `is_del`=1 WHERE `id`=?";
+		
+		try {
+			this.prep =  this.conn.prepareStatement(sql);
+			prep.setInt(1, id);
+			
+			if (prep.executeUpdate() > 0) {
+				flag = true;
+			}
+			this.prep.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
 	// 根据ID查找商品
 	public Goods findById(int id) {
 		Goods goods = null;
-		String sql = "SELECT id, img, type_id, `name`, `amount`, price, `status`, `desc`, seller_id, create_date FROM goods WHERE id=?";
+		String sql = "SELECT id, img, type_id, `name`, `amount`, price, `is_del`, `desc`, seller_id, create_date FROM goods WHERE id=? AND `is_del`=0";
 
 		try {
 			this.prep = this.conn.prepareStatement(sql);
@@ -105,7 +123,7 @@ public class GoodsDao {
 				goods.setName(rSet.getString(4));
 				goods.setAmount(rSet.getInt(5));
 				goods.setPrice(rSet.getDouble(6));
-				goods.setStatus(rSet.getInt(7));
+				goods.setIs_del(rSet.getInt(7));
 				goods.setDesc(rSet.getString(8));
 				goods.setSeller_id(rSet.getInt(9));
 				goods.setCreate_date(rSet.getDate(10));
@@ -120,8 +138,8 @@ public class GoodsDao {
 	
 	public List<Goods> findByPage(GoodsPage page){
 		List<Goods> page_all = new ArrayList<Goods>();
-		String sql = "SELECT * FROM goods LIMIT ?,?";
-		String sql_search = "SELECT * FROM goods WHERE `name` LIKE ? LIMIT ?,?";
+		String sql = "SELECT * FROM goods WHERE `is_del`=0 LIMIT ?,?";
+		String sql_search = "SELECT * FROM goods WHERE `name` LIKE ? AND `is_del`=0 LIMIT ?,?";
 		try {
 			ResultSet rSet = null;
 			// 有搜索条件
@@ -147,7 +165,7 @@ public class GoodsDao {
 				goods.setName(rSet.getString("name"));
 				goods.setAmount(rSet.getInt("amount"));
 				goods.setPrice(rSet.getDouble("price"));
-				goods.setStatus(rSet.getInt("status"));
+				goods.setIs_del(rSet.getInt("is_del"));
 				goods.setDesc(rSet.getString("desc"));
 				goods.setSeller_id(rSet.getInt("seller_id"));
 				goods.setCreate_date(rSet.getDate("create_date"));
@@ -162,7 +180,7 @@ public class GoodsDao {
 	// 根据商品名查找
 	public List<Goods> findByName(String name) {
 		List<Goods> all = new ArrayList<Goods>();
-		String sql = "SELECT * FROM goods WHERE `name` LIKE ?";
+		String sql = "SELECT * FROM goods WHERE `name` LIKE ? AND `is_del`=0";
 		
 		try {
 			this.prep = this.conn.prepareStatement(sql);
@@ -177,7 +195,7 @@ public class GoodsDao {
 				goods.setName(rSet.getString(4));
 				goods.setAmount(rSet.getInt(5));
 				goods.setPrice(rSet.getDouble(6));
-				goods.setStatus(rSet.getInt(7));
+				goods.setIs_del(rSet.getInt(7));
 				goods.setDesc(rSet.getString(8));
 				goods.setSeller_id(rSet.getInt(9));
 				goods.setCreate_date(rSet.getDate(10));
@@ -193,7 +211,7 @@ public class GoodsDao {
 	// 查找所有商品
 	public List<Goods> findAll() {
 		List<Goods> all = new ArrayList<>();
-		String sql = "SELECT id, img, type_id, `name`, `amount`, price, `status`, `desc`, seller_id, create_date FROM goods";
+		String sql = "SELECT id, img, type_id, `name`, `amount`, price, `is_del`, `desc`, seller_id, create_date FROM goods WHERE `is_del`=0";
 		//String sql = "SELECT g.id, g.img, g.type_id, g.`name`, g.price, g.`status`, g.`desc`, g.seller_id, g.create_date, u.nickname FROM `goods` g, `user` u WHERE g.seller_id=u.id";
 
 		try {
@@ -208,7 +226,7 @@ public class GoodsDao {
 				goods.setName(rSet.getString(4));
 				goods.setAmount(rSet.getInt(5));
 				goods.setPrice(rSet.getDouble(6));
-				goods.setStatus(rSet.getInt(7));
+				goods.setIs_del(rSet.getInt(7));
 				goods.setDesc(rSet.getString(8));
 				goods.setSeller_id(rSet.getInt(9));
 				goods.setCreate_date(rSet.getDate(10));
@@ -224,7 +242,7 @@ public class GoodsDao {
 	// 获取商品数量
 	public int findRows() {
 		int rows = 0;
-		String sql = "SELECT COUNT(*) rows FROM goods";
+		String sql = "SELECT COUNT(*) rows FROM goods WHERE `is_del`=0";
 		try {
 			this.prep = this.conn.prepareStatement(sql);
 			ResultSet rSet = this.prep.executeQuery();

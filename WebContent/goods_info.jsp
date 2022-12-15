@@ -87,12 +87,27 @@
                     		if (user == null || (user != null && user.getId() != seller.getId())) {
                     	%>
                     		<a href="#" class="btn btn-light border-danger my-2 mr-3 btn-lg" style="color: red; background-color: #fff;">立即购买</a>
-	                        <a href="AddCartServlet?id=<%=goods.getId() %>" class="btn btn-danger my-2 btn-lg">加入购物车</a>
+                    		<%
+                    			if (user != null) {
+                    				Boolean inCart = (Boolean)request.getAttribute("inCart");
+                    				if (inCart != null && inCart == true) {
+                    		%>
+                    				<a href="cart" class="btn btn-danger my-2 btn-lg">已加入购物车</a>
+                    		<%
+                    				} else {
+                    		%>
+                    				<a href="AddCartServlet?id=<%=goods.getId() %>" class="btn btn-danger my-2 btn-lg">加入购物车</a>
+                    		<%
+                    				}
+                    			} else {
+                    		%>
+	                        	<a href="AddCartServlet?id=<%=goods.getId() %>" class="btn btn-danger my-2 btn-lg">加入购物车</a>
                     	<%
-                    		} else {	
+                    			}
+                    		} else {
                     	%>
 							<a href="#" class="btn btn-info my-2 mr-3">修改商品信息</a>
-                        	<a href="#" class="btn btn-danger my-2">下架商品</a>
+                        	<a href="DelGoodsServlet?id=<%=goods.getId() %>" class="btn btn-danger my-2">下架商品</a>
                     	<%
                     		}
                     	%>

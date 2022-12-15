@@ -12,7 +12,7 @@ public class Goods {
 	private Double price;
 	private String desc;
 	private Integer seller_id;
-	private Integer status;
+	private Integer is_del;
 	private Date create_date;
 
 	public Integer getId() {
@@ -63,11 +63,12 @@ public class Goods {
 	public void setSeller_id(Integer seller_id) {
 		this.seller_id = seller_id;
 	}
-	public Integer getStatus() {
-		return status;
+
+	public Integer getIs_del() {
+		return is_del;
 	}
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setIs_del(Integer is_del) {
+		this.is_del = is_del;
 	}
 	public Date getCreate_date() {
 		return create_date;
@@ -94,7 +95,7 @@ public class Goods {
 	@Override
 	public String toString() {
 		return "Goods [id=" + id + ", img=" + img + ", type_id=" + type_id + ", name=" + name + ", amount=" + amount
-				+ ", price=" + price + ", desc=" + desc + ", seller_id=" + seller_id + ", status=" + status
+				+ ", price=" + price + ", desc=" + desc + ", seller_id=" + seller_id + ", is_del=" + is_del
 				+ ", create_date=" + create_date + "]";
 	}
 }

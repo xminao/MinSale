@@ -65,6 +65,30 @@ public class CartDao {
 		return flag;
 	}
 	
+	// 根据购物车物品ID获取购物车物品
+	public CartItem findByID(int id) {
+		CartItem item = null;
+		String sql = "SELECT `id`, `goods_id`, `user_id`, `seller_id` FROM `cart` WHERE `id`=?";
+		try {
+			this.prep = this.conn.prepareStatement(sql);
+			this.prep.setInt(1, id);
+			ResultSet rSet = this.prep.executeQuery();
+			if (rSet.next()) {
+				item = new CartItem();
+				item.setId(rSet.getInt("id"));
+				item.setGoods_id(rSet.getInt("goods_id"));
+				item.setUser_id(rSet.getInt("user_id"));
+				item.setSeller_id(rSet.getInt("seller_id"));
+				item.setStatus(rSet.getInt("is_del"));
+			}
+			rSet.close();
+			this.prep.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return item;
+	}
+	
 	// 根据用户名查找所有购物车
 	public List<CartItem> findByUserID(int id) {
 		List<CartItem> all = new ArrayList<CartItem>();
