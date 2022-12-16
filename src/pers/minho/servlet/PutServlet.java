@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadBase.InvalidContentTypeException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -42,7 +43,6 @@ public class PutServlet extends HttpServlet {
 		
 		try {
 			if (UserUtil.isLogined(request)) {
-				System.out.println("PutServlet");
 				FileItemFactory factory = new DiskFileItemFactory();
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				upload.setHeaderEncoding("UTF-8");
@@ -55,8 +55,15 @@ public class PutServlet extends HttpServlet {
 				
 				User user = (User)ses.getAttribute("loginUser");
 				Goods goods = new Goods();
-				
-				List<FileItem> formItems = upload.parseRequest(request);
+				List<FileItem> formItems = null;
+				try {
+					formItems = upload.parseRequest(request);
+				} catch (InvalidContentTypeException e) {
+					e.toString();
+					request.getRequestDispatcher("/put.jsp").forward(request, response);
+					return;
+				}
+				//formItems = upload.parseRequest(request);
 				if (formItems != null && formItems.size() > 0) {
 	                // 迭代表单数据，判断每个表单项是普通类型还是上传的文件
 	                for (FileItem item : formItems) {
@@ -74,7 +81,7 @@ public class PutServlet extends HttpServlet {
 	                        File storeFile = new File(filePath);
 	                        goods.setImg("/static/goods_imgs/" + UUIDName);
 	                        item.write(storeFile);
-	                        request.setAttribute("message", "文件上传成功!");
+	                        //request.setAttribute("message", "文件上传成功!");
 	                    } else {
 	                    	String filedName = item.getFieldName();
 	                    	String value = item.getString("UTF-8");
@@ -103,6 +110,8 @@ public class PutServlet extends HttpServlet {
 						// 重定向到主页
 						response.sendRedirect("index");
 					}
+				} else {
+					request.getRequestDispatcher("/put.jsp").forward(request, response);
 				}
 			} else {
 				response.sendRedirect("login");

@@ -138,8 +138,8 @@ public class GoodsDao {
 	
 	public List<Goods> findByPage(GoodsPage page){
 		List<Goods> page_all = new ArrayList<Goods>();
-		String sql = "SELECT * FROM goods WHERE `is_del`=0 LIMIT ?,?";
-		String sql_search = "SELECT * FROM goods WHERE `name` LIKE ? AND `is_del`=0 LIMIT ?,?";
+		String sql = "SELECT * FROM goods WHERE `is_del`=0 ORDER BY `create_date` DESC LIMIT ?,?";
+		String sql_search = "SELECT * FROM goods WHERE `name` LIKE ? AND `is_del`=0 ORDER BY `create_date` LIMIT ?,?";
 		try {
 			ResultSet rSet = null;
 			// 有搜索条件

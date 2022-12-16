@@ -100,14 +100,18 @@
     
                 <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
                     <div class="d-flex flex-column justify-content-center">
-                        <div class="jumbotron my-5 mx-auto border border-info text-center" style="width: 400px; height: 300px; background-color: #CCE9E4;">
-                            <img src="<%=basePath%>static/add_img.png" class="mx-auto d-block" alt="..." style="width: 80px;">
-                            <div class="form-group my-2">
-
-							    <input type="file" name="file">
+                    
+                        <input type="file" name="file" id='i-file' style="display: none;">
+                        <div class="page-section portfolio mt-5" id="portfolio" onclick="$('#i-file').click();">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
+                                <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                    <div class="portfolio-item-caption-content text-center text-white"><i class="bi bi-plus" style="font-size: 100px;"></i></div>
+                                </div>
+                                <img class="img-fluid displayImg" style="width: 300px;height: 300px;" src="<%=basePath%>static/default.png" alt="..." />
                             </div>
                         </div>
-                        <div class="m-auto" style="width: 100px;">
+                        
+                        <div class="mx-auto mt-4" style="width: 100px;">
                             <button type="button" class="btn btn-outline-primary btn-block" onclick="toStep('put')">
                                 下一步
                             </button>
@@ -148,6 +152,7 @@
 	        }
 	    }
 	})
+    
 	
 	function toStep(arg) {
 	    if (arg === "image") {
