@@ -37,45 +37,45 @@
         </div>
       </div>
       <div class="d-flex justify-content-center">
-          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 170px; background-color: #F0F1F1;">
-            <img src="<%=basePath%>static/type_imgs/gadgets.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 80px;">
-            <div class="card-body mt-2">
+          <div class="card hvr-grow-shadow m-2 " style="width: 150px; height: 150px; background-color: #fff; border-radius: 25px; cursor:pointer;">
+            <img src="<%=basePath%>static/type_imgs/gadgets.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 92px;">
+            <div class="card-body mt-0 p-1">
               <p class="card-text text-center" style="font-size: large;">数码产品</p>
             </div>
           </div>
-          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 170px; background-color: #F0F1F1;">
-            <img src="<%=basePath%>static/type_imgs/clothes.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 80px;">
-            <div class="card-body mt-2">
+          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 150px; background-color: #fff; border-radius: 25px; cursor:pointer;">
+            <img src="<%=basePath%>static/type_imgs/clothes.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 92px;">
+            <div class="card-body mt-0 p-1">
               <p class="card-text text-center" style="font-size: large;">服饰鞋帽</p>
             </div>
           </div>
-          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 170px; background-color: #F0F1F1;">
-            <img src="<%=basePath%>static/type_imgs/books.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 80px;">
-            <div class="card-body mt-2">
+          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 150px; background-color: #fff; border-radius: 25px; cursor:pointer;">
+            <img src="<%=basePath%>static/type_imgs/books.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 92px;">
+            <div class="card-body mt-0 p-1">
               <p class="card-text text-center" style="font-size: large;">图书音像</p>
             </div>
           </div>
-          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 170px; background-color: #F0F1F1;">
-            <img src="<%=basePath%>static/type_imgs/handbag.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 80px;">
-            <div class="card-body mt-2">
+          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 150px; background-color: #fff; border-radius: 25px; cursor:pointer;">
+            <img src="<%=basePath%>static/type_imgs/handbag.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 92px;">
+            <div class="card-body mt-0 p-1">
               <p class="card-text text-center" style="font-size: large;">包表首饰</p>
             </div>
           </div>
-          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 170px; background-color: #F0F1F1;">
-            <img src="<%=basePath%>static/type_imgs/home.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 80px;">
-            <div class="card-body mt-2">
+          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 150px; background-color: #fff; border-radius: 25px; cursor:pointer;">
+            <img src="<%=basePath%>static/type_imgs/home.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 92px;">
+            <div class="card-body mt-0 p-1">
               <p class="card-text text-center" style="font-size: large;">家居生活</p>
             </div>
           </div>
-          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 170px; background-color: #F0F1F1;">
-            <img src="<%=basePath%>static/type_imgs/electric.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 80px;">
-            <div class="card-body mt-2">
+          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 150px; background-color: #fff; border-radius: 25px; cursor:pointer;">
+            <img src="<%=basePath%>static/type_imgs/electric.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 92px;">
+            <div class="card-body mt-0 p-1">
               <p class="card-text text-center" style="font-size: large;">家用电器</p>
             </div>
           </div>
-          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 170px; background-color: #F0F1F1;">
-            <img src="<%=basePath%>static/type_imgs/beauty.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 80px;">
-            <div class="card-body mt-2">
+          <div class="card hvr-grow-shadow m-2" style="width: 150px; height: 150px; background-color: #fff; border-radius: 25px; cursor:pointer;">
+            <img src="<%=basePath%>static/type_imgs/beauty.png" class="card-img-top mt-3 mx-auto d-block" alt="..." style="width: 92px;">
+            <div class="card-body mt-0 p-1">
               <p class="card-text text-center" style="font-size: large;">美容彩妆</p>
             </div>
           </div>

@@ -20,13 +20,13 @@
 	<jsp:include page="header.jsp" />
 
     <!-- 商品列表 -->
-    <div class="container mt-5 p-0 border" style="background-color: #fff;">
+    <div class="container mt-5 p-0 border-0" style="background-color: #fff;">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #fff;">
         <%
         	if (request.getParameter("searchName") == null) {
         %>
-            <a class="navbar-brand display-4" href="#">最新上架</a>
+            <a class="navbar-brand display-4" href="#"><i class="bi bi-bag-heart text-info"></i>&ensp;最新上架的商品</a>
        	<%
         	} else {
        	%>
@@ -50,7 +50,7 @@
 	    		for (Goods good : goods) {
         	%>
             <div class="card hvr-grow-shadow my-2 mx-2" style="width:211px;cursor:pointer;" onclick="window.location.href='<%=path%>/goods_info?id=<%=good.getId() %>'">
-                <div class="card-header py-1">
+                <div class="card-header py-1 border-0" style="background-color: #fff;">
                   <div class="media">
                     <img class="mr-4 my-auto" src="<%=basePath%>static/logo.svg" alt="user" style="width: 20%;">
                     <div class="media-body">
@@ -79,7 +79,7 @@
 					int totalPage= gPage.getTotalPage();
 					if (currentPage - 1 > 0) {
 				%>
-					<li class="page-item"><a class="page-link" href="goods?currentPage=<%=currentPage - 1%>">上一页</a></li>
+					<li class="page-item"><a class="page-link text-body" href="goods?currentPage=<%=currentPage - 1%>">上一页</a></li>
 				<%
 					} else {
 				%>
@@ -103,7 +103,7 @@
               	<%
               		if (currentPage != totalPage) {
               	%>
-              		<li class="page-item"><a class="page-link" href="goods?currentPage=<%=currentPage + 1%>">下一页</a></li>
+              		<li class="page-item"><a class="page-link text-body" href="goods?currentPage=<%=currentPage + 1%>">下一页</a></li>
            		<%
               		} else {
            		%>
