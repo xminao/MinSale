@@ -2,11 +2,20 @@ package pers.minho.entity;
 
 public class GoodsPage {
     private Integer currentPage = 1;
-    private Integer pageSize = 5;
+    private Integer pageSize = 10;
     private Integer begin;
     private Integer totalPage;
     private Integer rows;
     private String searchName = null;
+    private Integer categorize;
+
+	public Integer getCategorize() {
+		return categorize;
+	}
+
+	public void setCategorize(Integer categorize) {
+		this.categorize = categorize;
+	}
 
 	public String getSearchName() {
 		return searchName;
@@ -16,7 +25,7 @@ public class GoodsPage {
 		this.searchName = searchName;
 	}
 
-	public int getCurrentPage() {
+	public Integer getCurrentPage() {
 		
 		return currentPage;
 	}
@@ -25,7 +34,7 @@ public class GoodsPage {
 		this.currentPage = currentPage;
 	}
 	
-	public int getPageSize() {
+	public Integer getPageSize() {
 		return pageSize;
 	}
 	
@@ -33,7 +42,7 @@ public class GoodsPage {
 		this.pageSize = pageSize;
 	}
 	
-	public int getBegin() {
+	public Integer getBegin() {
 		begin = (this.currentPage - 1)*pageSize;
 		return begin;
 	}
@@ -42,7 +51,7 @@ public class GoodsPage {
 		this.begin = begin;
 	}
 	
-	public int getTotalPage() {
+	public Integer getTotalPage() {
 		totalPage = rows%pageSize==0?rows/pageSize:rows/pageSize+1;
 		return totalPage;
 	}
@@ -51,7 +60,7 @@ public class GoodsPage {
 		this.totalPage = totalPage;
 	}
 	
-	public int getRows() {
+	public Integer getRows() {
 		return rows;
 	}
 	

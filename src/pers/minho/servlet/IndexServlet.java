@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pers.minho.entity.Categorize;
 import pers.minho.entity.Goods;
 import pers.minho.entity.GoodsPage;
 import pers.minho.entity.User;
+import pers.minho.service.CategorizeService;
 import pers.minho.service.GoodsService;
 import pers.minho.service.UserService;
 
@@ -32,15 +34,16 @@ public class IndexServlet extends HttpServlet {
 		try {
 			GoodsService g_service = new GoodsService();
 			UserService u_service = new UserService();
+			CategorizeService cg_service = new CategorizeService();
 			GoodsPage page = new GoodsPage();
 			// 如果不足十个就只要五个甚至五个以内，保证界面美观
-			if (g_service.findRows() < 10) {
+			if (g_service.findRows(page) < 10) {
 				page.setPageSize(5);
 			} else {
 				page.setPageSize(10);
 			}
 			
-			page.setRows(g_service.findRows());
+			page.setRows(g_service.findRows(page));
 			page.setTotalPage(page.getTotalPage());
 			List<Goods> goods = g_service.findByPage(page);
 			
@@ -49,8 +52,11 @@ public class IndexServlet extends HttpServlet {
 				map.put(good.getSeller_id(), u_service.findById(good.getSeller_id()));
 			}
 			
+			List<Categorize> categorizes = cg_service.findAll();
+			
 			request.setAttribute("goodsList", goods);
 			request.setAttribute("userMap", map);
+			request.setAttribute("categorizes", categorizes);
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

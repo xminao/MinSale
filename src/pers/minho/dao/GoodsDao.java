@@ -138,23 +138,51 @@ public class GoodsDao {
 	
 	public List<Goods> findByPage(GoodsPage page){
 		List<Goods> page_all = new ArrayList<Goods>();
-		String sql = "SELECT * FROM goods WHERE `is_del`=0 ORDER BY `create_date` DESC LIMIT ?,?";
-		String sql_search = "SELECT * FROM goods WHERE `name` LIKE ? AND `is_del`=0 ORDER BY `create_date` LIMIT ?,?";
+		String sql = null;
+		String sql_search = null;
+		// 分类查询
+		if (page.getCategorize() != null) {
+			sql = "SELECT * FROM `goods` WHERE `type_id`=? AND `is_del`=0 ORDER BY `create_date` DESC LIMIT ?,?";
+			sql_search = "SELECT * FROM goods WHERE `type_id`=? AND `name` LIKE ? AND `is_del`=0 ORDER BY `create_date` LIMIT ?,?";
+		} else {
+			sql = "SELECT * FROM `goods` WHERE `is_del`=0 ORDER BY `create_date` DESC LIMIT ?,?";
+			sql_search = "SELECT * FROM goods WHERE `name` LIKE ? AND `is_del`=0 ORDER BY `create_date` LIMIT ?,?";
+		}
 		try {
 			ResultSet rSet = null;
-			// 有搜索条件
-			if (page.getSearchName() != null) {
-				this.prep = this.conn.prepareStatement(sql_search);
-				this.prep.setString(1, "%" + page.getSearchName() + "%");
-				this.prep.setInt(2, page.getBegin());
-				this.prep.setInt(3, page.getPageSize());
-				rSet = this.prep.executeQuery();
-				
+			// 分类查询
+			if (page.getCategorize() != null) {
+				// 有搜索条件
+				if (page.getSearchName() != null) {
+					this.prep = this.conn.prepareStatement(sql_search);
+					this.prep.setInt(1, page.getCategorize());
+					this.prep.setString(2, "%" + page.getSearchName() + "%");
+					this.prep.setInt(3, page.getBegin());
+					this.prep.setInt(4, page.getPageSize());
+					rSet = this.prep.executeQuery();
+					
+				} else {
+					this.prep = this.conn.prepareStatement(sql);
+					this.prep.setInt(1, page.getCategorize());
+					this.prep.setInt(2, page.getBegin());
+					this.prep.setInt(3, page.getPageSize());
+					rSet = this.prep.executeQuery();
+				}
 			} else {
-				this.prep = this.conn.prepareStatement(sql);
-				this.prep.setInt(1, page.getBegin());
-				this.prep.setInt(2, page.getPageSize());
-				rSet = this.prep.executeQuery();
+				// 有搜索条件
+				if (page.getSearchName() != null) {
+					this.prep = this.conn.prepareStatement(sql_search);
+					this.prep.setString(1, "%" + page.getSearchName() + "%");
+					this.prep.setInt(2, page.getBegin());
+					this.prep.setInt(3, page.getPageSize());
+					rSet = this.prep.executeQuery();
+					
+				} else {
+					this.prep = this.conn.prepareStatement(sql);
+					this.prep.setInt(1, page.getBegin());
+					this.prep.setInt(2, page.getPageSize());
+					rSet = this.prep.executeQuery();
+				}
 			}
 			Goods goods = null;
 			while (rSet.next()) {
@@ -171,6 +199,8 @@ public class GoodsDao {
 				goods.setCreate_date(rSet.getDate("create_date"));
 				page_all.add(goods);
 			}
+			rSet.close();
+			this.prep.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -240,11 +270,35 @@ public class GoodsDao {
 	}
 	
 	// 获取商品数量
-	public int findRows() {
+	public int findRows(GoodsPage page) {
 		int rows = 0;
 		String sql = "SELECT COUNT(*) rows FROM goods WHERE `is_del`=0";
+		String sql_search = "SELECT COUNT(*) rows FROM goods WHERE `name` LIKE ? AND `is_del`=0";
+		
+		if (page.getCategorize() != null) {
+			sql = "SELECT COUNT(*) rows FROM goods WHERE `type_id`=? AND `is_del`=0";
+			sql_search = "SELECT COUNT(*) rows FROM goods WHERE `type_id`=? AND `name` LIKE ? AND `is_del`=0";
+		}
+
 		try {
-			this.prep = this.conn.prepareStatement(sql);
+			if (page.getCategorize() != null) {
+				if (page.getSearchName() != null) {
+					this.prep = this.conn.prepareStatement(sql_search);
+					this.prep.setInt(1, page.getCategorize());
+					this.prep.setString(2, "%" + page.getSearchName() + "%");
+				} else {
+					this.prep = this.conn.prepareStatement(sql);
+					this.prep.setInt(1, page.getCategorize());
+				}
+			} else {
+				if (page.getSearchName() != null) {
+					this.prep = this.conn.prepareStatement(sql_search);
+					this.prep.setString(1, "%" + page.getSearchName() + "%");
+				} else {
+					this.prep = this.conn.prepareStatement(sql);
+				}
+			}
+			
 			ResultSet rSet = this.prep.executeQuery();
 			if (rSet.next()) {
 				rows = rSet.getInt("rows");

@@ -37,7 +37,7 @@ public class GoodsService {
 		return dao.findByName(name);
 	}
 	
-	public int findRows() {
-		return dao.findRows();
+	public int findRows(GoodsPage page) {
+		return dao.findRows(page);
 	}
 }

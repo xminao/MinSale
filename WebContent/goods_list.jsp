@@ -24,10 +24,17 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #fff;">
         <%
+        	Categorize cg = (Categorize)request.getAttribute("categorize");
         	if (request.getParameter("searchName") == null) {
+        		if (request.getParameter("type") == null) {
         %>
             <a class="navbar-brand display-4" href="#"><i class="bi bi-bag-heart text-info"></i>&ensp;最新上架的商品</a>
        	<%
+        		} else {
+        %>
+        	<a class="navbar-brand display-4" href="#"><i class="bi bi-bag-heart text-info"></i>&ensp;分类：<%=cg.getName() %></a>
+        <%
+        		}
         	} else {
        	%>
        		<a class="navbar-brand text-secondary" href="#">搜索 "<span class="text-success"><%=request.getParameter("searchName") %></span>" 的结果</a>
@@ -75,12 +82,19 @@
             <ul class="pagination justify-content-center my-3">
             	<%
 	            	GoodsPage gPage = (GoodsPage)request.getAttribute("goodsPage");
-					int currentPage = gPage.getCurrentPage();
-					int totalPage= gPage.getTotalPage();
+					Integer currentPage = gPage.getCurrentPage();
+					Integer totalPage= gPage.getTotalPage();
+					Integer categorize = gPage.getCategorize();
 					if (currentPage - 1 > 0) {
+						if (categorize != null) {
+				%>
+					<li class="page-item"><a class="page-link text-body" href="goods?type=<%=categorize %>&currentPage=<%=currentPage - 1%>">上一页</a></li>
+				<%
+						} else {
 				%>
 					<li class="page-item"><a class="page-link text-body" href="goods?currentPage=<%=currentPage - 1%>">上一页</a></li>
 				<%
+						}
 					} else {
 				%>
 					<li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
@@ -89,22 +103,40 @@
 					
 					for (int i=1; i<=totalPage; i++) {
 						if (i == currentPage) {
+							if (categorize != null) {
 				%>
-              		<li class="page-item active"><a class="page-link" href="goods?currentPage=<%=i %>"><%=i %></a></li>
+              		<li class="page-item active"><a class="page-link" href="goods?type=<%=categorize %>&currentPage=<%=i %>"><%=i %></a></li>
 				<%
+							} else {
+				%>
+					<li class="page-item active"><a class="page-link" href="goods?currentPage=<%=i %>"><%=i %></a></li>
+				<%
+							}
 						} else {
+							if (categorize != null) {
+				%>
+					<li class="page-item"><a class="page-link" href="goods?type=<%=categorize %>&currentPage=<%=i %>"><%=i %></a></li>
+				<%
+							} else {
 				%>
 					<li class="page-item"><a class="page-link" href="goods?currentPage=<%=i %>"><%=i %></a></li>
 				<%
+							}
 						}
 					}
 				%>
               		<li class="page-item disabled"><h5 class="text-secondary" tabindex="-1">&emsp;...&emsp;</h5></li>
               	<%
               		if (currentPage != totalPage) {
+              			if (categorize != null) {
+              	%>
+              		<li class="page-item"><a class="page-link text-body" href="goods?type=<%=categorize %>&currentPage=<%=currentPage + 1%>">下一页</a></li>
+           		<%
+              			} else {
               	%>
               		<li class="page-item"><a class="page-link text-body" href="goods?currentPage=<%=currentPage + 1%>">下一页</a></li>
-           		<%
+              	<%
+              			}
               		} else {
            		%>
            			<li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>

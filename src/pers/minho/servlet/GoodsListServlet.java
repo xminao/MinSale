@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pers.minho.entity.Categorize;
 import pers.minho.entity.Goods;
 import pers.minho.entity.GoodsPage;
 import pers.minho.entity.User;
+import pers.minho.service.CategorizeService;
 import pers.minho.service.GoodsService;
 import pers.minho.service.UserService;
 
@@ -31,9 +33,11 @@ public class GoodsListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		String currentPage = request.getParameter("currentPage");
 		String searchName = request.getParameter("searchName");
+		String categorizeType = request.getParameter("type");
 		try {
 			GoodsService g_service = new GoodsService();
 			UserService u_service = new UserService();
+			CategorizeService cg_service = new CategorizeService();
 			
 			GoodsPage page = new GoodsPage();
 			if (currentPage != null) {
@@ -42,8 +46,11 @@ public class GoodsListServlet extends HttpServlet {
 			if (searchName != null) {
 				page.setSearchName(searchName);
 			}
+			if (categorizeType != null) {
+				page.setCategorize(Integer.parseInt(categorizeType));
+			}
 			page.setPageSize(10);
-			page.setRows(g_service.findRows());
+			page.setRows(g_service.findRows(page));
 			page.setTotalPage(page.getTotalPage());
 
 			List<Goods> goods = g_service.findByPage(page);
@@ -53,10 +60,15 @@ public class GoodsListServlet extends HttpServlet {
 				map.put(good.getSeller_id(), u_service.findById(good.getSeller_id()));
 			}
 			
+			if (categorizeType != null) {
+				Categorize categorize = cg_service.findById(Integer.parseInt(categorizeType));
+				request.setAttribute("categorize", categorize);
+			}
+			
 			request.setAttribute("goodsPage", page);
 			request.setAttribute("goodsPageList", goods);
 			request.setAttribute("userMap", map);
-			request.getRequestDispatcher("/lastest_goods.jsp").forward(request, response);
+			request.getRequestDispatcher("/goods_list.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

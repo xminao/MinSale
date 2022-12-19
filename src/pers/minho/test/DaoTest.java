@@ -5,18 +5,26 @@ import java.util.List;
 import org.apache.naming.java.javaURLContextFactory;
 
 import pers.minho.dao.CartDao;
+import pers.minho.dao.CategorizeDao;
 import pers.minho.dao.GoodsDao;
 import pers.minho.dao.UserDao;
+import pers.minho.entity.Categorize;
 import pers.minho.entity.Goods;
 import pers.minho.entity.GoodsPage;
 
 public class DaoTest {
 	
+	public static void CategorizeTest() {
+		CategorizeDao dao = new CategorizeDao();
+		List<Categorize> all = dao.findAll();
+		System.out.println(all);
+	}
+	
 	public static void CartDaoTest() {
-		CartDao dao = new CartDao();
-		
-// 获取用户购物车数量
-		System.out.println(dao.findRowsByUserID(6));
+//		CartDao dao = new CartDao();
+//		
+//// 获取用户购物车数量
+//		System.out.println(dao.findRowsByUserID(6));
 	}
 
 	// 商品操作测试
@@ -68,14 +76,20 @@ public class DaoTest {
 		
 // 分页查询测试
 //		GoodsPage page = new GoodsPage();
-//		page.setCurrentPage(3);
+//		page.setCurrentPage(1);
 //		page.setRows(dao.findRows());
-//		page.setPageSize(2);
+//		page.setPageSize(5);
+//		page.setCategorize(5);
 //		List<Goods> goods = dao.findByPage(page);
 //		for (Goods good : goods) {
 //			System.out.println(good.toString());
 //		}
-		
+
+// 获取数量测试
+//		GoodsPage page = new GoodsPage();
+//		page.setCategorize(2);
+//		page.setSearchName("镜");
+//		System.out.println(dao.findRows(page));
 		
 	}
 
@@ -128,6 +142,7 @@ public class DaoTest {
 	public static void main(String[] args) {
 		//GoodsDaoTest();
 		//UserDaoTest();
-		CartDaoTest();
+		//CartDaoTest();
+		CategorizeTest();
 	}
 }
