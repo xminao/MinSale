@@ -34,6 +34,7 @@ public class GoodsListServlet extends HttpServlet {
 		String currentPage = request.getParameter("currentPage");
 		String searchName = request.getParameter("searchName");
 		String categorizeType = request.getParameter("type");
+		System.out.println(categorizeType);
 		try {
 			GoodsService g_service = new GoodsService();
 			UserService u_service = new UserService();
