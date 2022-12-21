@@ -44,7 +44,7 @@
 	          </a>
 	   
 	          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-	            <a class="dropdown-item" href="#">个人中心</a>
+	            <a class="dropdown-item" href="personal">个人中心</a>
 	            <a class="dropdown-item" href="LoginOutServlet">登出</a>
 	          </div>
 		</div>
